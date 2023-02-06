@@ -1,0 +1,93 @@
+
+@media screen and (max-width: 600px) {
+body {
+  font-family: "Times New Roman", serif;
+  line-height: 1.25;
+  padding: 10px 10px;
+}
+.header{
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+table {
+  border: 1px solid green;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+table caption {
+  font-size: 1.5em;
+  margin: .25em 0 .75em;
+}
+table tr {
+  background: yellow;
+  border: 1px solid blue;
+  padding: .35em;
+}
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: green;
+  color: white;
+}
+table td img {
+  text-align: center;
+}
+
+  table {
+    border: 0;
+  }
+  table caption {
+    font-size: 1.3em;
+  }
+  table thead tr{
+    display: none;
+    background: red; 
+  }
+  thead { 
+    
+  }
+  table tr {
+    border-bottom: 1px solid blue;
+    display: block;
+    margin-bottom: .725em;
+  }
+  table td {
+    border-bottom: 1px solid blue;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+    /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "Nomor : "; }
+  td:nth-of-type(2):before { content: "No RM : "; }
+  td:nth-of-type(3):before { content: "Nama : "; }
+  td:nth-of-type(4):before { content: "Alamat : "; }
+  td:nth-of-type(5):before { content: "No HP : "; }
+  td:nth-of-type(6):before { content: "Kelas : "; }
+  td:nth-of-type(7):before { content: "Prioritas : "; }
+  td:nth-of-type(8):before { content: "Operasi : "; }
+  td:nth-of-type(9):before { content: "Dokter : "; }
+  td:nth-of-type(10):before { content: "Tgl Antri : "; }
+  td:nth-of-type(11):before { content: "Tgl Permintaan : "; }
+}
+
+
