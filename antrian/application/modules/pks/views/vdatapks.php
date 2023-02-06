@@ -17,7 +17,7 @@
         <tr>      
           <th>ID</th>
           <th>Perusahaan</th>
-			<th>Mulai</th>
+			<th>Mulaii</th>
 			<th>Akhir</th>
 			<th>Jenis</th>
 			<th>Keterangan</th> 
