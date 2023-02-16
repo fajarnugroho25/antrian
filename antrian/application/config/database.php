@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'ANTRIAN',
+	'hostname' => 'srv.skom.id',
+	'username' => 'uc1azjni_fajarnugroho25',
+	'password' => 'sarjono@bengkel',
+	'database' => 'uc1azjni_antrian',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
