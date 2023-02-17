@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/dataTables.bootstrap.css">
         
 <div class="span10">
-            <h3 class="page-titlee">Perjanjian Kerja Sama</h3>
+            <h3 class="page-titlee5">Perjanjian Kerja Sama</h3>
             
 
 <div class="well">
