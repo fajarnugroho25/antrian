@@ -1,8 +1,0 @@
-<?php if (!defined('BASEPATH')) exit ('no direct script access allowed');
-
-class mchat extends CI_Model{
-
-
-
-
-}
