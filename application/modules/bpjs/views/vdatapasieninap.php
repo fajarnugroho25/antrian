@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/dataTables.bootstrap.css">
         
 <div class="span10">
-            <h3 class="page-titlee5r">Perjanjian Kerja Sama</h3>
+            <h3 class="page-titlee5r">LIST PASIEN RAWAT INAP</h3>
             
 
 <div class="well">
@@ -12,30 +12,17 @@
     <table class="table table-striped table-bordered data">
       <thead>
         <tr>      
-          <th>ID</th>
-          <th>Perusahaan</th>
-			<th>Mulaii</th>
-			<th>Akhir</th>
-			<th>Jenis</th>
-			<th>Keterangan</th> 
-          <th>Action</th>
+          <th>No Reg</th>
+          
         </tr>
       </thead>
       <tbody>
-              <?php foreach ($pks as $d){ ?> 
+              <?php foreach ($bpjs as $d){ ?> 
         <tr>        
-          <td><?php echo $d->id_pks; ?></td>
-          <td><?php echo $d->perusahaan; ?></td>
-		   <td><?php echo $d->mulai; ?></td>
-		    <td><?php echo $d->akhir; ?></td>
-			 <td><?php echo $d->jenis; ?></td>
-			  <td><?php echo $d->ket; ?></td>
+          <td><?php echo $d->no_reg; ?></td>
+         
           
-                                        <td align="center">
-                                        <a href="<?php echo base_url();?>pks/editpks/<?php echo $d->id_pks; ?>">
-                                        <input type="button" value="Edit" class="btn btn-info"></a>
-                                        
-                                        </td>
+                                 
         </tr>
                              <?php } ?>
       </tbody>
