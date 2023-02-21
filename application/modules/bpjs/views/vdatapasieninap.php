@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/dataTables.bootstrap.css">
         
 <div class="span10">
-            <h3 class="page-titlee5r">LIST PASIEN RAWAT INAP</h3>
+            <h3 class="page-titlee5r">LIST PASIEN RAWAT INAP HISYS</h3>
             
 
 <div class="well">
@@ -13,16 +13,35 @@
       <thead>
         <tr>      
           <th>No Reg</th>
-          
+          <th>RM</th>
+          <th>Nama Pasien</th>
+          <th>Tgl Lahir</th>
+          <th>Alamat</th>
+          <th>DPJP</th>
+          <th>SEP</th>
+          <th>Tagihan</th>
+          <th>Action</th> 
+
         </tr>
       </thead>
       <tbody>
               <?php foreach ($bpjs as $d){ ?> 
         <tr>        
           <td><?php echo $d->no_reg; ?></td>
-         
+          <td><?php echo $d->rm; ?></td>
+          <td><?php echo $d->nama_pasien; ?></td>
+          <td><?php echo $d->tgl_lahir; ?></td>
+          <td><?php echo $d->alamat; ?></td>
+          <td><?php echo $d->dpjp; ?></td>
+          <td><?php echo $d->sep; ?></td>
+          <td><?php echo $d->tagihan; ?></td>
           
-                                 
+          <td align="center">
+                                        <a href="<?php echo base_url();?>bpjs/editbpjs/<?php echo $d->no_reg; ?>">
+                                        <input type="button" value="Edit" class="btn btn-info"></a>
+                                        
+          </td>    
+
         </tr>
                              <?php } ?>
       </tbody>

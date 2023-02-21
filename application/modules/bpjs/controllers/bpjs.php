@@ -25,4 +25,17 @@ class bpjs extends CI_Controller
             $this->load->view('admin/vutama',$isi);
             } else { redirect('login'); }
     }
+
+    public function editbpjs()
+    {
+            
+        if ($this->session->userdata('login') == TRUE  ){
+            $data['menu_list']=$this->mmenu->tampilkan();  
+            $data['submenu_list']=$this->mmenu->tampilkansub(); 
+            //$data['pks'] = $this->mpks->get_by_id($this->uri->segment(3));
+            //data['cbjenis'] = $this->mpks->combo_jenis();
+            //$isi =  $this->template->display('pks/vtambahpks',$data);
+            $this->load->view('admin/vutama',$isi);
+            } else { redirect('login'); }
+    }
 }
