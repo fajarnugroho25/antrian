@@ -32,9 +32,9 @@ class bpjs extends CI_Controller
         if ($this->session->userdata('login') == TRUE  ){
             $data['menu_list']=$this->mmenu->tampilkan();  
             $data['submenu_list']=$this->mmenu->tampilkansub(); 
-            //$data['pks'] = $this->mpks->get_by_id($this->uri->segment(3));
+            $data['bpjs'] = $this->mbpjs->get_by_id($this->uri->segment(3));
             //data['cbjenis'] = $this->mpks->combo_jenis();
-            //$isi =  $this->template->display('pks/vtambahpks',$data);
+            $isi =  $this->template->display('bpjs/vtambahbpjs',$data);
             $this->load->view('admin/vutama',$isi);
             } else { redirect('login'); }
     }
