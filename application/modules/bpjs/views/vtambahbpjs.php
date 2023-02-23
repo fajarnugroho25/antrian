@@ -1,17 +1,4 @@
-<?php 
-
-
-$id   = '';
-
-$titel   = 'Tambah';
-$aksi   = 'tambah';
-$button   = 'Simpan';
-$perusahaan = '';
-$mulai = '';
-$akhir = '';
-$jenis = '';
-$ket = '';
-     
+<?php    
 if (!empty($bpjs)) { 
 foreach ($bpjs as $row):
 $no_reg = $row->no_reg;    
@@ -22,10 +9,14 @@ $alamat = $row->alamat;
 $dpjp = $row->dpjp;
 $sep = $row->sep;  
 $tagihan = $row->tagihan;  
+$grouping = '';
+$icdix = '';
+$icdx = '';
+$catatan = '';
 
-$titel   = 'Perbarui';
-$aksi   = 'perbarui';
-$button   = 'Perbarui';
+$titel   = 'Simpan';
+$aksi   = 'Simpan';
+$button   = 'Simpan';
 endforeach;
 }
 ?> 
@@ -51,7 +42,7 @@ endforeach;
     <td>
         <label><b>No Reg</b></label>
     </td>
-    <td> &nbsp  &nbsp</td>
+        <td> &nbsp  &nbsp</td>
     <td>
       <input type="text" name='no_reg' id='no_reg' class="form-control" value="<?= $no_reg; ?>" readonly>
     </td>
@@ -60,19 +51,19 @@ endforeach;
     <td>
         <label><b>RM</b></label>
     </td>
-    <td> &nbsp &nbsp</td>
+        <td> &nbsp &nbsp</td>
     <td>
         <input type="text" id="rm" name="rm" value="<?php echo $rm; ?>" required>
     </td>
   </tr>
   <tr> 
-  <td>
-        <label><b>RM</b></label>
-    </td>
-    <td> &nbsp &nbsp</td>
     <td>
-        <input type="text" id="nama_pasien" name="nama_pasien" value="<?php echo $nama_pasien; ?>" required>
-    </td>
+            <label><b>RM</b></label>
+        </td>
+            <td> &nbsp &nbsp</td>
+        <td>
+            <input type="text" id="nama_pasien" name="nama_pasien" value="<?php echo $nama_pasien; ?>" required>
+        </td>
   </tr>
   <tr>
         <td>
@@ -81,22 +72,23 @@ endforeach;
         <td> </td>
         <td>
             <div class="input-group date" data-provide="datepicker"  data-date-format="yyyy/mm/dd">            
-            <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" readonly="readonly" value="<?php echo $tgl_lahir ?>" required>
+            <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>" required>
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>
                 </div>
             </div>
         </td>    
     </tr>
-  <tr> 
+    <tr> 
   <td>
         <label><b>Alamat</b></label>
-    </td>
-    <td> &nbsp &nbsp</td>
-    <td>
-        <input type="text" id="alamat" name="alamat" value="<?php echo $alamat; ?>" required>
-    </td>
+        </td>
+        <td> &nbsp &nbsp</td>
+        <td>
+            <input type="text" id="alamat" name="alamat" value="<?php echo $alamat; ?>" required>
+        </td>
   </tr>
+  <tr> 
   <tr> 
   <td>
         <label><b>DPJP</b></label>
@@ -108,6 +100,15 @@ endforeach;
   </tr>
   <tr> 
   <td>
+        <label><b>SEP</b></label>
+    </td>
+    <td> &nbsp &nbsp</td>
+    <td>
+        <input type="text" id="sep" name="sep" value="<?php echo $sep; ?>" required>
+    </td>
+  </tr>
+  <tr> 
+  <td>
         <label><b>Tagihan</b></label>
     </td>
     <td> &nbsp &nbsp</td>
@@ -115,11 +116,44 @@ endforeach;
         <input type="text" id="tagihan" name="tagihan" value="<?php echo $tagihan; ?>" required>
     </td>
   </tr>
-  
+  <tr> 
+  <td>
+        <label><b>Grouping</b></label>
+    </td>
+    <td> &nbsp &nbsp</td>
+    <td>
+        <input type="text" id="grouping" name="grouping" value="" required>
+    </td>
+  </tr>
+  <tr> 
+  <td>
+        <label><b>ICD IX</b></label>
+    </td>
+    <td> &nbsp &nbsp</td>
+    <td>
+        <input type="text" id="icdix" name="icdix" value="">
+    </td>
+  </tr>
+  <tr> 
+  <td>
+        <label><b>ICD X</b></label>
+    </td>
+    <td> &nbsp &nbsp</td>
+    <td>
+        <input type="text" id="icdx" name="icdx" value="" >
+    </td>
+  </tr>
+  <tr>
+        <td>
+            <label><b>Catatan</b></label>
+        </td>
+            <td> &nbsp &nbsp</td>
+            <td><textarea id="catatan" value="" class="form-control " name="catatan"></textarea></td>
+    </tr> 
 </table>
 
 <div style="padding-top:20px">
-   <button class="btn btn-primary" id="simpan" type="submit"><?php echo $button; ?> PKS</button>
+   <button class="btn btn-primary" id="simpan" type="submit"><?php echo $button; ?> bpjs</button>
     
 </div>
 </form>

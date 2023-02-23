@@ -38,4 +38,36 @@ class bpjs extends CI_Controller
             $this->load->view('admin/vutama',$isi);
             } else { redirect('login'); }
     }
+
+    public function Simpan()
+	{
+
+            $no_reg = $this->input->post('no_reg');
+			$rm = $this->input->post('rm');
+			$nama_pasien = $this->input->post('nama_pasien');
+			$tgl_lahir = $this->input->post('tgl_lahir');
+			$alamat = $this->input->post('alamat');
+			$dpjp =  $this->input->post('dpjp');        
+            $sep = $this->input->post('sep');
+			$tagihan = $this->input->post('tagihan');
+            $grouping = $this->input->post('grouping');
+            $icdix =  $this->input->post('icdix');     
+            $icdx =  $this->input->post('icdx');     
+            $catatan =  $this->input->post('catatan');        
+    
+            if ($this->input->post('grouping')==''){
+                echo "<script>alert('Nilai Grouping Belum Masuk !'); history.go(-1);</script>";   
+            }
+            else {
+                    // Simpan Data
+                   $result = $this->mbpjs->simpan($no_reg, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan);
+                   if ($result){
+                   echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-1)</script>";    
+                   } else {
+                    echo "<script>alert('Data Pasien BPJS Sudah Tersimpan:( !'); history.go(-1)</script>";   
+
+                   }   
+
+            }
+	}
 }
