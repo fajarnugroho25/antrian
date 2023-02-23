@@ -61,6 +61,27 @@ class mbpjs extends CI_Model{
           return $result->result();   
           
       }
-  
+
+
+      function simpan($no_reg, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan){   
+        $data = array(
+         'no_reg'=>$no_reg,
+            'rm'=>$rm,
+             'nama_pasien'=>$nama_pasien,
+              'tgl_lahir'=>$tgl_lahir,
+               'alamat'=>$alamat,
+                'dpjp'=>$dpjp,
+                'sep'=>$sep,
+                'tagihan'=>$tagihan,
+                'grouping'=>$grouping,
+                'icdix'=>$icdix,
+                'icdx'=>$icdx,
+                'catatan'=>$catatan,
+        
+        );    
+        $query = $this->db->insert('bpjs', $data);
+        
+        return $query;
+        }
     
 }
