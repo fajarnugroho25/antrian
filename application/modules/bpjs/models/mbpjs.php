@@ -63,9 +63,9 @@ class mbpjs extends CI_Model{
       }
 
 
-      function simpan($no_reg, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan){   
+      function simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan){   
         $data = array(
-         'no_reg'=>$no_reg,
+         'no_reg'=>$no_reg1,
             'rm'=>$rm,
              'nama_pasien'=>$nama_pasien,
               'tgl_lahir'=>$tgl_lahir,

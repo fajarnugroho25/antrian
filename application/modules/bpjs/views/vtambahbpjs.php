@@ -1,23 +1,41 @@
-<?php    
-if (!empty($bpjs)) { 
-foreach ($bpjs as $row):
-$no_reg = $row->no_reg;    
-$rm = $row->rm;
-$nama_pasien = $row->nama_pasien;
-$tgl_lahir = $row->tgl_lahir;
-$alamat = $row->alamat;
-$dpjp = $row->dpjp;
-$sep = $row->sep;  
-$tagihan = $row->tagihan;  
-$grouping = '';
-$icdix = '';
-$icdx = '';
-$catatan = '';
 
-$titel   = 'Simpan';
-$aksi   = 'Simpan';
+
+<?php 
+
+
+$id   = '';
+
+$titel   = 'Tambah';
+$aksi   = 'tambah';
 $button   = 'Simpan';
-endforeach;
+$perusahaan = '';
+$mulai = '';
+$akhir = '';
+$jenis = '';
+$ket = '';
+     
+if (!empty($bpjs)) { 
+    
+    unset($no_reg);
+
+    foreach ($bpjs as $row):
+    $no_reg = $row->no_reg;    
+    $rm = $row->rm;
+    $nama_pasien = $row->nama_pasien;
+    $tgl_lahir = $row->tgl_lahir;
+    $alamat = $row->alamat;
+    $dpjp = $row->dpjp;
+    $sep = $row->sep;  
+    $tagihan = $row->tagihan;  
+    $grouping = '';
+    $icdix = '';
+    $icdx = '';
+    $catatan = '';
+    
+    $titel   = 'Simpan';
+    $aksi   = 'Simpan';
+    $button   = 'Simpan';
+    endforeach;
 }
 ?> 
 

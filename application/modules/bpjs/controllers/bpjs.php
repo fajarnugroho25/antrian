@@ -42,7 +42,7 @@ class bpjs extends CI_Controller
     public function Simpan()
 	{
 
-            $no_reg = $this->input->post('no_reg');
+            $no_reg1 = $this->input->post('no_reg');
 			$rm = $this->input->post('rm');
 			$nama_pasien = $this->input->post('nama_pasien');
 			$tgl_lahir = $this->input->post('tgl_lahir');
@@ -60,7 +60,7 @@ class bpjs extends CI_Controller
             }
             else {
                     // Simpan Data
-                   $result = $this->mbpjs->simpan($no_reg, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan);
+                   $result = $this->mbpjs->simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan);
                    if ($result){
                    echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-1)</script>";    
                    } else {
