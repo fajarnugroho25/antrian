@@ -10,14 +10,14 @@ if (!empty($bpjs)) {
     $dpjp = $row->dpjp;
     $sep = $row->sep;  
     $tagihan = $row->tagihan;  
-    $grouping = '';
-    $icdix = '';
-    $icdx = '';
-    $catatan = '';
+    $grouping = $row->grouping;
+    $icdix = $row->icdix;
+    $icdx = $row->icdx;
+    $catatan = $row->catatan;
     
-    $titel   = 'Simpan';
-    $aksi   = 'Simpan';
-    $button   = 'Simpan';
+    $titel   = 'Edit';
+    $aksi   = 'Edit';
+    $button   = 'Edit';
     endforeach;
 }
 ?> 
@@ -123,7 +123,7 @@ if (!empty($bpjs)) {
     </td>
     <td> &nbsp &nbsp</td>
     <td>
-        <input type="text" id="grouping" name="grouping" value="" required>
+        <input type="text" id="grouping" name="grouping" value="<?php echo $grouping; ?>" required>
     </td>
   </tr>
   <tr> 
@@ -132,7 +132,7 @@ if (!empty($bpjs)) {
     </td>
     <td> &nbsp &nbsp</td>
     <td>
-        <input type="text" id="icdix" name="icdix" value="">
+        <input type="text" id="icdix" name="icdix" value="<?php echo $icdix; ?>">
     </td>
   </tr>
   <tr> 
@@ -141,7 +141,7 @@ if (!empty($bpjs)) {
     </td>
     <td> &nbsp &nbsp</td>
     <td>
-        <input type="text" id="icdx" name="icdx" value="" >
+        <input type="text" id="icdx" name="icdx" value="<?php echo $icdx; ?>" >
     </td>
   </tr>
   <tr>
@@ -149,12 +149,13 @@ if (!empty($bpjs)) {
             <label><b>Catatan</b></label>
         </td>
             <td> &nbsp &nbsp</td>
-            <td><textarea id="catatan" value="" class="form-control " name="catatan"></textarea></td>
-    </tr> 
+            <td><textarea id="catatan" name="catatan" rows="4"  ><?php echo $catatan; ?></textarea></td>
+            
+        </tr> 
 </table>
 
 <div style="padding-top:20px">
-   <button class="btn btn-primary" id="simpan" type="submit"><?php echo $button; ?> bpjs</button>
+   <button class="btn btn-primary" id="edit" type="submit"><?php echo $button; ?> bpjs</button>
     
 </div>
 </form>

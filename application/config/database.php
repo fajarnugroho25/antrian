@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
+$db['otherdbMySQL'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
@@ -95,7 +95,7 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db['otherdbMySQL'] = array(
+$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'srv.skom.id',
 	'username' => 'uc1azjni_fajarnugroho25',
