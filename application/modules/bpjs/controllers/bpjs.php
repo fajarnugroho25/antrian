@@ -40,6 +40,7 @@ class bpjs extends CI_Controller
 
     public function Simpan()
 	{
+           $data['bpjs'] = $this->mbpjs->get_by_reg1($this->uri->segment(3));
 
             $no_reg1 = $this->input->post('no_reg');
 			$rm = $this->input->post('rm');
@@ -54,8 +55,9 @@ class bpjs extends CI_Controller
             $icdx =  $this->input->post('icdx');     
             $catatan =  $this->input->post('catatan');        
     
-            if ($this->input->post('grouping')==''){
-                echo "<script>alert('Nilai Grouping Belum Masuk !'); history.go(-1);</script>";   
+                     
+            if ($data == $no_reg1 ){
+                echo "<script>alert('No Registrasi sudah dimasukkan !'); history.go(-1);</script>";   
             }
             else {
                     // Simpan Data

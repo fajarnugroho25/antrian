@@ -93,6 +93,14 @@ class mbpjs extends CI_Model{
             $this->db->where('no_reg', $no_reg);
             $query = $this->db->get('bpjs');
             return $query->result();    
+
+          }
+
+          function get_by_reg1($no_reg1){
+            $this->db->select('no_reg');
+            $this->db->where('no_reg', $no_reg1);
+            $query = $this->db->get('bpjs');
+            return $query->result();    
               
           }
 
