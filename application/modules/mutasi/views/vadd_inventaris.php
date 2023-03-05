@@ -355,7 +355,7 @@
                 </td>
                 <td> </td>
                 <td>
-                   Rp. <input type="text" id="hargabel" class="form-control asset" name="hargabel" style="width:275px;" > 
+                   Rp. <input type="text" id="hargabel" class="form-control asset" name="hargabel" style="width:275px;" >  //
                 </td>    
             </tr>
             <tr>

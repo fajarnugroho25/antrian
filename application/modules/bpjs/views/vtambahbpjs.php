@@ -114,7 +114,7 @@ if (!empty($bpjs)) {
     </td>
     <td> &nbsp &nbsp</td>
     <td>
-        <input type="text" id="tagihan" name="tagihan" value="<?php echo $tagihan; ?>" required>
+        <input type="text" id="tagihan" class="form-control asset"  name="tagihan" value="<?php echo $tagihan; ?>" required>
     </td>
   </tr>
   <tr> 
