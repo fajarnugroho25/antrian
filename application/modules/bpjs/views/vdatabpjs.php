@@ -7,7 +7,7 @@
             <h3 class="page-title">List Pasien BPJS</h3>
             
 <div class="btn-toolbar">
-    <a class="btn btn-primary" href="<?php echo base_url();?>bpjs/veditbpjs" role="button">Update Data</a>
+    <a class="btn btn-primary" href="<?php echo base_url();?>bpjs/updatebpjs" role="button">Update Data</a>
 </div>
 
 <div class="well">
