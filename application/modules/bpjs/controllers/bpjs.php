@@ -40,8 +40,7 @@ class bpjs extends CI_Controller
 
     public function Simpan()
 	{
-           $data['bpjs'] = $this->mbpjs->get_by_reg1($this->uri->segment(3));
-
+         
             $no_reg1 = $this->input->post('no_reg');
 			$rm = $this->input->post('rm');
 			$nama_pasien = $this->input->post('nama_pasien');
@@ -55,8 +54,11 @@ class bpjs extends CI_Controller
             $icdx =  $this->input->post('icdx');     
             $catatan =  $this->input->post('catatan');        
     
-              //var_dump($no_reg1);  cek 
-            if ($data == $no_reg1 ){
+            $this->db->where('no_reg', $no_reg1);
+            $query = $this->db->get('bpjs');
+
+             
+            if ($query->num_rows() > 0){
                 echo "<script>alert('No Registrasi sudah dimasukkan !'); history.go(-2);</script>";   
             }
             else {
@@ -68,8 +70,8 @@ class bpjs extends CI_Controller
                     echo "<script>alert('Data Pasien BPJS Sudah Tersimpan:( !'); history.go(-2)</script>";   
 
                    }   
-
-            }
+                }
+            
 
         }
 
@@ -137,7 +139,7 @@ class bpjs extends CI_Controller
                 $data['obat'] = $this->mbpjs->updatebpjsnow();
                 $data['menu_list'] = $this->mmenu->tampilkan();
                 $data['submenu_list'] = $this->mmenu->tampilkansub();
-                echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-1)</script>";     
+                echo "<script>alert('Data Pasien BPJS Terupdate !'); history.go(-1)</script>";     
             } else {
                 redirect('login');
             }
