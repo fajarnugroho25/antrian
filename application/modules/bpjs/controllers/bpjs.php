@@ -102,7 +102,12 @@ class bpjs extends CI_Controller
 
         public function edit()
         {
-    
+            $tagihan = $this->input->post('tagihan');
+            $resulttagihan = preg_replace("/[^0-9]/", "", $tagihan);
+
+            $grouping = $this->input->post('grouping');
+            $resultgrouping = preg_replace("/[^0-9]/", "", $grouping);
+
                 $no_reg1 = $this->input->post('no_reg');
                 $rm = $this->input->post('rm');
                 $nama_pasien = $this->input->post('nama_pasien');
@@ -110,8 +115,8 @@ class bpjs extends CI_Controller
                 $alamat = $this->input->post('alamat');
                 $dpjp =  $this->input->post('dpjp');        
                 $sep = $this->input->post('sep');
-                $tagihan = $this->input->post('tagihan');
-                $grouping = $this->input->post('grouping');
+                $tagihan = $resulttagihan ;
+                $grouping = $resultgrouping ;
                 $icdix =  $this->input->post('icdix');     
                 $icdx =  $this->input->post('icdx');     
                 $catatan =  $this->input->post('catatan');        
@@ -145,4 +150,56 @@ class bpjs extends CI_Controller
             }
 
          }
+
+         function get_autocomplete_icd10()
+    {
+
+        $data = array();
+        $icd10_name = $this->input->get('term');
+
+        if (!empty($icd10_name)) {
+
+            $result = $this->mdokter->search_icd10($icd10_name);
+
+            if (count($result) > 0) {
+
+                foreach ($result as $icd10) {
+                    $aRow = array();
+                    $aRow['label'] = $icd10->icd_nama;
+                    $aRow['value'] = $icd10->icd_kode;
+
+                    $data[] = $aRow;
+                }
+            }
+        }
+
+        echo json_encode($data);
+    }
+
+
+    function get_autocomplete_icd9()
+    {
+
+        $data = array();
+        $icd9_name = $this->input->get('term');
+
+        if (!empty($icd9_name)) {
+
+            $result = $this->mdokter->search_icd9($icd9_name);
+
+            if (count($result) > 0) {
+
+                foreach ($result as $icd9) {
+                    $aRow = array();
+                    $aRow['label'] = $icd9->icd_nama;
+                    $aRow['value'] = $icd9->icd_kode;
+
+                    $data[] = $aRow;
+                }
+            }
+        }
+
+        echo json_encode($data);
+    }
+
 }

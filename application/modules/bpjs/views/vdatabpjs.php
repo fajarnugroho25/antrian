@@ -32,9 +32,9 @@
           <td><?php echo $d->no_reg; ?></td>
           <td><?php echo $d->rm; ?></td>
           <td><?php echo $d->nama_pasien; ?></td>
-          <td><?php echo $d->dpjp; ?></td>
-          <td><?php echo $d->tagihan; ?></td>
-          <td><?php echo $d->grouping; ?></td>
+          <td ><?php echo $d->dpjp; ?></td>
+          <td style="text-align: right;"><?php echo number_format($d->tagihan); ?></td>
+          <td style="text-align: right;"><?php echo number_format($d->grouping); ?></td>
           <td><?php echo $d->icdix; ?></td>
           <td><?php echo $d->icdx; ?></td>
           <td><?php echo $d->catatan; ?></td>

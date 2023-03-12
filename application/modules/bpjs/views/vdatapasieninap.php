@@ -2,11 +2,11 @@
 <script type="text/javascript" src="<?php echo base_url();?>public/assets/DataTables/media/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/dataTables.bootstrap.css">
-        
+<script src="~/Scripts/autoNumeric/autoNumeric.min.js" type="text/javascript"></script>        
+
+
 <div class="span10">
             <h3 class="page-titlee5r">LIST PASIEN RAWAT INAP HISYS</h3>
-            
-
 <div class="well">
 
     <table class="table table-striped table-bordered data">
