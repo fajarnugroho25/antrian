@@ -8,11 +8,24 @@ if (!empty($bpjs)) {
     $tgl_lahir = $row->tgl_lahir;
     $alamat = $row->alamat;
     $dpjp = $row->dpjp;
+    $tgl_reg = $row->tgl_reg;
+    $masa_inap = $row->masa_inap;
     $sep = $row->sep;  
+    $bangsal = $row->bangsal;
+    $kelas = $row->kelas;
+    $hak_kelas = $row->hak_kelas;
     $tagihan = $row->tagihan;  
     $grouping = $row->grouping;
-    $icdix = $row->icdix;
+    $iur = $row->iur;
+    $selisih_tagihan = $row->selisih_tagihan;
     $icdx = $row->icdx;
+    $icdx2 = $row->icdx_2;
+    $icdx3 = $row->icdx_3;
+    $icdx4 = $row->icdx_4;
+    $icdix = $row->icdix;
+    $icdix2 = $row->icdix_2;
+    $icdix3 = $row->icdix_3;
+    $icdix4 = $row->icdix_4;
     $catatan = $row->catatan;
     
     $titel   = 'Edit';
@@ -57,7 +70,7 @@ if (!empty($bpjs)) {
                 </td>
                     <td></td>
                 <td>
-                    <input type="text" id="rm" name="rm" value="<?php echo $rm; ?>" required>
+                    <input type="text" id="rm" name="rm" value="<?php echo $rm; ?>" readonly>
                 </td>
             </tr>
                 <tr> 
@@ -66,7 +79,7 @@ if (!empty($bpjs)) {
                     </td>
                         <td></td>
                     <td>
-                        <input type="text" id="nama_pasien" name="nama_pasien" value="<?php echo $nama_pasien; ?>" required>
+                        <input type="text" id="nama_pasien" name="nama_pasien" value="<?php echo $nama_pasien; ?>" readonly>
                     </td>
                 </tr>
                 <tr>
@@ -76,7 +89,7 @@ if (!empty($bpjs)) {
                     <td> </td>
                     <td>
                         <div class="input-group date" data-provide="datepicker"  data-date-format="yyyy/mm/dd">            
-                        <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>" required>
+                        <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $tgl_lahir ?>" readonly>
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -89,7 +102,7 @@ if (!empty($bpjs)) {
                     </td>
                     <td></td>
                     <td>
-                        <input type="text" id="alamat" name="alamat" value="<?php echo $alamat; ?>" required>
+                    <input type="text" id="alamat" name="alamat" value="<?php echo $alamat; ?>" readonly>    
                     </td>
                 </tr>
            
@@ -99,7 +112,30 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="dpjp" name="dpjp" value="<?php echo $dpjp; ?>" required>
+                    <input type="text" id="dpjp" name="dpjp" value="<?php echo $dpjp; ?>" readonly>
+                </td>
+            </tr>
+            <tr>
+                    <td>
+                        <label><b>Tgl Registrasi</b></label>
+                    </td>
+                    <td> </td>
+                    <td>
+                        <div class="input-group date" data-provide="datepicker"  data-date-format="yyyy/mm/dd">            
+                        <input type="text" class="form-control" id="tgl_reg" name="tgl_reg" value="<?php echo $tgl_reg ?>" readonly>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                    </td>    
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>Lama Menginap</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="masa_inap" name="masa_inap" value="<?php echo $masa_inap; ?>" readonly>
                 </td>
             </tr>
             <tr> 
@@ -108,7 +144,34 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="sep" name="sep" value="<?php echo $sep; ?>" required>
+                    <input type="text" id="sep" name="sep" value="<?php echo $sep; ?>" readonly>
+                </td>
+            </tr>
+             <tr> 
+                <td>
+                    <label><b>Bangsal</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="bangsal" name="bangsal" value="<?php echo $bangsal; ?>" readonly>
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>Kelas</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="kelas" name="kelas" value="<?php echo $kelas; ?>" readonly>
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>Hak Kelas</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="hak_kelas" name="hak_kelas" value="<?php echo $hak_kelas; ?>" readonly>
                 </td>
             </tr>
             <tr> 
@@ -117,7 +180,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="tagihan" class="number-separator" name="tagihan" value="<?php echo $tagihan; ?>" required>
+                    <input type="text"  id="tagihan" class="number-separator" name="tagihan" value="<?php echo $tagihan; ?>" readonly>
                 </td>
             </tr>
             <tr> 
@@ -129,6 +192,25 @@ if (!empty($bpjs)) {
                     <input type="text"  id="grouping"  class="number-separator1"  name="grouping" value="<?php echo $grouping; ?>" required> 
                 </td>
             </tr>
+            <tr> 
+                <td>
+                    <label><b>Iur</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text"  id="iur"  class="number-separator2"  name="iur" value="<?php echo $iur; ?>" required> 
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>Selisih Tagihan</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text"  id="selisih_tagihan"  class="number-separator3"  name="selisih_tagihan" value="<?php echo $selisih_tagihan; ?>" required> 
+                </td>
+            </tr>
+
         </table>
     </td>
 
@@ -137,29 +219,84 @@ if (!empty($bpjs)) {
      <table>
             <tr> 
                 <td valign="top">
-                    <label><b>ICD IX</b></label>
-                </td>
-                <td></td>
-                <td>
-                    <input type="text" id="icdix" name="icdix" value="<?php echo $icdix; ?>">
-                </td>
-            </tr>
-            <tr> 
-                <td>
-                    <label><b>ICD X</b></label>
+                    <label><b>ICD X Utama</b></label>
                 </td>
                 <td></td>
                 <td>
                     <input type="text" id="icdx" name="icdx" value="<?php echo $icdx; ?>" >
                 </td>
             </tr>
-                <tr>
-                    <td>
+            <tr> 
+                <td>
+                    <label><b>ICD X Sekunder 1</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdx2" name="icdx2" value="<?php echo $icdx2; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD X Sekunder 2</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdx3" name="icdx3" value="<?php echo $icdx3; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD X Sekunder 3</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdx4" name="icdx4" value="<?php echo $icdx4; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Utama</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdix" name="icdix" value="<?php echo $icdix; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Sekunder 1</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdix2" name="icdix2" value="<?php echo $icdix2; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Sekunder 2</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdix3" name="icdix3" value="<?php echo $icdix3; ?>" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Sekunder 3</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="icdix4" name="icdix4" value="<?php echo $icdix4; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
                         <label><b>Catatan</b></label>
-                    </td>
+                </td>
                         <td></td>
                         <td><textarea id="catatan" name="catatan" rows="4"  ><?php echo $catatan; ?></textarea></td>                
-                </tr> 
+            </tr> 
+            
     </table>
     </td>
 </table>
