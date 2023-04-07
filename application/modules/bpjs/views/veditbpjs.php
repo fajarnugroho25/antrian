@@ -102,7 +102,7 @@ if (!empty($bpjs)) {
                     </td>
                     <td></td>
                     <td>
-                    <input type="text" id="alamat" name="alamat" value="<?php echo $alamat; ?>" readonly>    
+                    <textarea id="alamat" name="alamat" rows="4" readonly><?php echo $alamat; ?></textarea>       
                     </td>
                 </tr>
            

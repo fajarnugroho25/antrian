@@ -6,7 +6,7 @@
 <!--  -->
 
 <div class="span10">  
-            <h3 class="page-titlee5r">LIST PASIEN RAWAT INAP HISYS</h3>
+            <h3 class="page-titlee5r">LIST PASIEN BPJS RAWAT INAP HISYS</h3>
 <div class="well">
 
     <table class="table table-striped table-bordered data">
@@ -15,11 +15,12 @@
           <th>No Reg</th>
           <th>RM</th>
           <th>Nama Pasien</th>
-          <th>Tgl Lahir</th>
-          <th>Alamat</th>
           <th>DPJP</th>
-          <th>SEP</th>
+          <th>Tgl Registrasi</th>
+          <th>Lama Inap</th>
           <th>Tagihan</th>
+          <th>Bangsal</th>
+          <th>Kelas</th>
           <th>Action</th> 
 
         </tr>
@@ -30,11 +31,12 @@
           <td><?php echo $d->no_reg; ?></td>
           <td><?php echo $d->rm; ?></td>
           <td><?php echo $d->nama_pasien; ?></td>
-          <td><?php echo $d->tgl_lahir; ?></td>
-          <td><?php echo $d->alamat; ?></td>
           <td><?php echo $d->dpjp; ?></td>
-          <td><?php echo $d->sep; ?></td>
-          <td><?php echo $d->tagihan; ?></td>
+          <td><?php echo $d->tgl_reg; ?></td>
+          <td><?php echo $d->masa_inap; ?></td>
+          <td style="text-align: right;"><?php echo number_format($d->tagihan); ?></td>
+          <td><?php echo $d->bangsal; ?></td>
+          <td><?php echo $d->kelas; ?></td>
           
           <td align="center">
                                         <a href="<?php echo base_url();?>bpjs/editbpjs/<?php echo $d->no_reg; ?>">

@@ -151,7 +151,9 @@ class bpjs extends CI_Controller
 
          }
 
-         function get_autocomplete_icd10()
+     
+
+    function get_autocomplete_icd10()
     {
 
         $data = array();
@@ -159,7 +161,7 @@ class bpjs extends CI_Controller
 
         if (!empty($icd10_name)) {
 
-            $result = $this->mdokter->search_icd10($icd10_name);
+            $result = $this->mbpjs->search_icd10($icd10_name);
 
             if (count($result) > 0) {
 
@@ -185,7 +187,7 @@ class bpjs extends CI_Controller
 
         if (!empty($icd9_name)) {
 
-            $result = $this->mdokter->search_icd9($icd9_name);
+            $result = $this->mbpjs->search_icd9($icd9_name);
 
             if (count($result) > 0) {
 
