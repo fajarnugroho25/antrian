@@ -108,6 +108,12 @@ class bpjs extends CI_Controller
             $grouping = $this->input->post('grouping');
             $resultgrouping = preg_replace("/[^0-9]/", "", $grouping);
 
+            $iur = $this->input->post('iur');
+            $resultiur = preg_replace("/[^0-9]/", "", $iur);
+
+            $selisih_tagihan = $this->input->post('selisih_tagihan');
+            $resultselisih_tagihan = preg_replace("/[^0-9]/", "", $selisih_tagihan);
+
                 $no_reg1 = $this->input->post('no_reg');
                 $rm = $this->input->post('rm');
                 $nama_pasien = $this->input->post('nama_pasien');
@@ -117,8 +123,16 @@ class bpjs extends CI_Controller
                 $sep = $this->input->post('sep');
                 $tagihan = $resulttagihan ;
                 $grouping = $resultgrouping ;
-                $icdix =  $this->input->post('icdix');     
-                $icdx =  $this->input->post('icdx');     
+                $iur = $resultiur ;
+                $selisih_tagihan = $resultselisih_tagihan ;
+                $icdx =  $this->input->post('icdx');    
+                $icdx2 =  $this->input->post('icdx2'); 
+                $icdx3 =  $this->input->post('icdx3'); 
+                $icdx4 =  $this->input->post('icdx4'); 
+                $icdix =  $this->input->post('icdix');    
+                $icdix2 =  $this->input->post('icdix2'); 
+                $icdix3 =  $this->input->post('icdix3'); 
+                $icdix4 =  $this->input->post('icdix4'); 
                 $catatan =  $this->input->post('catatan');        
         
                 if ($this->input->post('grouping')==''){
@@ -126,7 +140,7 @@ class bpjs extends CI_Controller
                 }
                 else {
                         // Edit Data
-                       $result = $this->mbpjs->edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan);
+                       $result = $this->mbpjs->edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan);
                        if ($result){
                        echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-2)</script>";    
                        } else {

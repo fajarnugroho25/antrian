@@ -28,7 +28,7 @@ if (!empty($bpjs)) {
     $icdix4 = $row->icdix_4;
     $catatan = $row->catatan;
     
-    $titel   = 'Edit';
+    $titel   = 'EDIT PASIEN';
     $aksi   = 'Edit';
     $button   = 'Edit';
     endforeach;
@@ -42,6 +42,10 @@ if (!empty($bpjs)) {
 <script type="text/javascript" src="<?php echo base_url(); ?>public/assets/js/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>public/assets/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>public/assets/js/easy-number-separator.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>public/assets/js/autocomplete/jquery.autocomplete.js"></script>  
+
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 
 </head>
 
@@ -189,7 +193,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="grouping"  class="number-separator1"  name="grouping" value="<?php echo $grouping; ?>" required> 
+                    <input type="text"  id="grouping" onchange="price()" class="number-separator1"  name="grouping" value="<?php echo $grouping; ?>" required> 
                 </td>
             </tr>
             <tr> 
@@ -198,7 +202,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="iur"  class="number-separator2"  name="iur" value="<?php echo $iur; ?>" required> 
+                    <input type="text"  id="iur" onchange="price()" class="number-separator2"  name="iur" value="<?php echo $iur; ?>" required> 
                 </td>
             </tr>
             <tr> 
@@ -207,7 +211,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="selisih_tagihan"  class="number-separator3"  name="selisih_tagihan" value="<?php echo $selisih_tagihan; ?>" required> 
+                    <input type="text"  id="selisih_tagihan" class="number-separator3"  name="selisih_tagihan" value="<?php echo $selisih_tagihan; ?>" readonly> 
                 </td>
             </tr>
 
@@ -223,7 +227,8 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdx" name="icdx" value="<?php echo $icdx; ?>" >
+                    <input type="text" class="icd10" name="icdx" value="<?php echo $icdx; ?>" placeholder="ICD10" >  
+                  
                 </td>
             </tr>
             <tr> 
@@ -232,7 +237,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdx2" name="icdx2" value="<?php echo $icdx2; ?>" >
+                    <input type="text" class="icd10" name="icdx2" value="<?php echo $icdx2; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -241,7 +246,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdx3" name="icdx3" value="<?php echo $icdx3; ?>" >
+                    <input type="text" class="icd10" name="icdx3" value="<?php echo $icdx3; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -250,7 +255,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdx4" name="icdx4" value="<?php echo $icdx4; ?>" >
+                <input type="text" class="icd10" name="icdx4" value="<?php echo $icdx4; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -259,7 +264,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdix" name="icdix" value="<?php echo $icdix; ?>" >
+                    <input type="text" class="icd9" name="icdix" value="<?php echo $icdix; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -268,7 +273,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdix2" name="icdix2" value="<?php echo $icdix2; ?>" >
+                    <input type="text" class="icd9" name="icdix2" value="<?php echo $icdix2; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -277,7 +282,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdix3" name="icdix3" value="<?php echo $icdix3; ?>" >
+                    <input type="text" class="icd9" name="icdix3" value="<?php echo $icdix3; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -286,7 +291,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" id="icdix4" name="icdix4" value="<?php echo $icdix4; ?>" >
+                    <input type="text" class="icd9" name="icdix4" value="<?php echo $icdix4; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr>
@@ -319,7 +324,7 @@ src="easy-number-separator.js"
     separator: '.',
     // decimalSeparator: ',',
      resultInput: '#tagihan',
-  })
+  });
 
   src="easy-number-separator.js"
   easyNumberSeparator({
@@ -328,7 +333,27 @@ src="easy-number-separator.js"
     // decimalSeparator: ',',
      resultInput: '#grouping',
     
-  })
+  });
+
+  src="easy-number-separator.js"
+  easyNumberSeparator({
+    selector: '.number-separator2',
+    separator: '.',
+    // decimalSeparator: ',',
+     resultInput: '#iur',
+    
+  });
+
+  src="easy-number-separator.js"
+  easyNumberSeparator({
+    selector: '.number-separator3',
+    separator: '.',
+    // decimalSeparator: ',',
+     resultInput: '#selisih_tagihan',
+    
+  });
+
+  
 
 // var grouping = document.getElementById("grouping");
 // grouping.addEventListener("keyup", function(e) {
@@ -356,6 +381,97 @@ src="easy-number-separator.js"
 // }
 </script>
 
+<script type="text/javascript">
+      $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+ 
+    $( ".tags" )
+      // don't navigate away from the field on tab when selecting an item
+      .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+  } );
+
+</script>
+
+ <script type="text/javascript">
+        $(document).ready(function(){
+            $( ".icd10" ).autocomplete({
+              source: "<?php echo site_url('bpjs/get_autocomplete_icd10/?');?>"
+            });
+           
+        });
+
+        $(document).ready(function(){
+            $( ".icd9" ).autocomplete({
+              source: "<?php echo site_url('bpjs/get_autocomplete_icd9/?');?>"
+            });
+           
+        });
+</script>
 
 
+<script type="text/javascript">
+function price() {
 
+	var tgh = document.getElementById("tagihan").value.replace(/[^0-9]/, '') ;
+    var grp = document.getElementById("grouping").value.replace(/[^0-9]/, '') ;
+    var iu = document.getElementById("iur").value.replace(/[^0-9]/, '') ;
+        document.getElementById("selisih_tagihan").value = tgh - grp - iu ;
+    }
+</script>

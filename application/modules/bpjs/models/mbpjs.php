@@ -109,7 +109,7 @@ class mbpjs extends CI_Model{
           }
 
         
-          function edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan){   
+          function edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan){   
             $data = array(
                  'rm'=>$rm,
                  'nama_pasien'=>$nama_pasien,
@@ -119,8 +119,16 @@ class mbpjs extends CI_Model{
                     'sep'=>$sep,
                     'tagihan'=>$tagihan,
                     'grouping'=>$grouping,
-                    'icdix'=>$icdix,
+                    'iur'=>$iur,
+                    'selisih_tagihan'=>$selisih_tagihan,
                     'icdx'=>$icdx,
+                    'icdx_2'=>$icdx2,
+                    'icdx_3'=>$icdx3,
+                    'icdx_4'=>$icdx4,
+                    'icdix'=>$icdix,
+                    'icdix_2'=>$icdix2,
+                    'icdix_3'=>$icdix3,
+                    'icdix_4'=>$icdix4,
                     'catatan'=>$catatan,
             
             );    
