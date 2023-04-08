@@ -10,7 +10,6 @@ class bpjs extends CI_Controller
         $this->load->model('mbpjs');
         $this->load->model('menu/mmenu');
 
-
     }
 
    
@@ -41,18 +40,43 @@ class bpjs extends CI_Controller
     public function Simpan()
 	{
          
+        $tagihan = $this->input->post('tagihan');
+        $resulttagihan = preg_replace("/[^0-9]/", "", $tagihan);
+
+        $grouping = $this->input->post('grouping');
+        $resultgrouping = preg_replace("/[^0-9]/", "", $grouping);
+
+        $iur = $this->input->post('iur');
+        $resultiur = preg_replace("/[^0-9]/", "", $iur);
+
+        $selisih_tagihan = $this->input->post('selisih_tagihan');
+        $resultselisih_tagihan = preg_replace("/[^0-9]/", "", $selisih_tagihan);
+
             $no_reg1 = $this->input->post('no_reg');
 			$rm = $this->input->post('rm');
 			$nama_pasien = $this->input->post('nama_pasien');
 			$tgl_lahir = $this->input->post('tgl_lahir');
 			$alamat = $this->input->post('alamat');
-			$dpjp =  $this->input->post('dpjp');        
+			$dpjp =  $this->input->post('dpjp'); 
+            $tgl_reg = $this->input->post('tgl_reg');
+            $masa_inap = $this->input->post('masa_inap');       
             $sep = $this->input->post('sep');
-			$tagihan = $this->input->post('tagihan');
-            $grouping = $this->input->post('grouping');
-            $icdix =  $this->input->post('icdix');     
-            $icdx =  $this->input->post('icdx');     
-            $catatan =  $this->input->post('catatan');        
+            $bangsal = $this->input->post('bangsal'); 
+            $kelas = $this->input->post('kelas'); 
+            $hak_kelas = $this->input->post('hak_kelas');
+			$tagihan = $resulttagihan ;
+            $grouping = $resultgrouping ;
+            $iur = $resultiur ;
+            $selisih_tagihan = $this->input->post('selisih_tagihan') ;
+            $icdx =  $this->input->post('icdx');    
+            $icdx2 =  $this->input->post('icdx2'); 
+            $icdx3 =  $this->input->post('icdx3'); 
+            $icdx4 =  $this->input->post('icdx4'); 
+            $icdix =  $this->input->post('icdix');    
+            $icdix2 =  $this->input->post('icdix2'); 
+            $icdix3 =  $this->input->post('icdix3'); 
+            $icdix4 =  $this->input->post('icdix4'); 
+            $catatan =  $this->input->post('catatan');          
     
             $this->db->where('no_reg', $no_reg1);
             $query = $this->db->get('bpjs');
@@ -63,7 +87,7 @@ class bpjs extends CI_Controller
             }
             else {
                     // Simpan Data
-                   $result = $this->mbpjs->simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan);
+                   $result = $this->mbpjs->simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan);
                    if ($result){
                    echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-2)</script>";    
                    } else {
@@ -155,7 +179,7 @@ class bpjs extends CI_Controller
         public function updatebpjs()
         {
             if ($this->session->userdata('login') == TRUE) {
-                $data['obat'] = $this->mbpjs->updatebpjsnow();
+                $data['bpjs'] = $this->mbpjs->updatebpjsnow();
                 $data['menu_list'] = $this->mmenu->tampilkan();
                 $data['submenu_list'] = $this->mmenu->tampilkansub();
                 echo "<script>alert('Data Pasien BPJS Terupdate !'); history.go(-1)</script>";     

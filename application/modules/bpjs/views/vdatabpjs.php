@@ -39,11 +39,11 @@
           <?php
           $cek = @(($d->selisih_tagihan / $tagihan) * 100 );
           if ($cek < 100) {
-            echo ' <td style=" text-align: right; ">' . number_format($d->selisih_tagihan) . '</td>';
+                    echo  ' <td style=" text-align: right; background-color:#7FFF00; color:black; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';   
           } else if ($cek > 100) {
-            echo  ' <td style=" text-align: right; background-color:#7FFF00; color:black; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';           
-          } else {
-            echo ' <td style=" text-align: right; background-color:#DC143C; color:white; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';            
+                    echo ' <td style=" text-align: right; background-color:#DC143C; color:white; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';  
+          } else { 
+                    echo ' <td style=" text-align: right; ">' . number_format($d->selisih_tagihan) . '</td>';              
           }
           ?>
           <td><?php echo $d->kelas; ?></td>

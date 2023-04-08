@@ -75,7 +75,7 @@ class mbpjs extends CI_Model{
       }
 
 
-      function simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $icdix, $icdx, $catatan){   
+      function simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan){   
         $data = array(
          'no_reg'=>$no_reg1,
             'rm'=>$rm,
@@ -83,11 +83,24 @@ class mbpjs extends CI_Model{
               'tgl_lahir'=>$tgl_lahir,
                'alamat'=>$alamat,
                 'dpjp'=>$dpjp,
+                'tgl_reg'=>$tgl_reg,
+                'masa_inap'=>$masa_inap,
                 'sep'=>$sep,
+                'bangsal'=>$sep,
+                'kelas'=>$kelas,
+                'hak_kelas'=>$hak_kelas,
                 'tagihan'=>$tagihan,
                 'grouping'=>$grouping,
-                'icdix'=>$icdix,
+                'iur'=>$iur,
+                'selisih_tagihan'=>$selisih_tagihan,
                 'icdx'=>$icdx,
+                'icdx_2'=>$icdx2,
+                'icdx_3'=>$icdx3,
+                'icdx_4'=>$icdx4,
+                'icdix'=>$icdix,
+                'icdix_2'=>$icdix2,
+                'icdix_3'=>$icdix3,
+                'icdix_4'=>$icdix4,
                 'catatan'=>$catatan,
         
         );    
@@ -140,22 +153,29 @@ class mbpjs extends CI_Model{
             function updatebpjsnow()
             {
                 $otherdb = $this->load->database('otherdb', TRUE);
-                $query = "SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(date_birth) as tgl_lahir, max(alamat) as alamat, 
-                             max(dpjp) as DPJP, max(no_sep) as SEP, SUM(real_amount) AS tagihan
+                $query = " SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(date_birth) as tgl_lahir, max(alamat) as alamat, 
+                            max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, max(no_sep) as SEP, SUM(ROUND(real_amount)) AS tagihan, 
+                            max(room_prefix) as bangsal,  max(class_name) as kelas, 
+                            max(hak_kelas_peserta) as hak_kelas
                             FROM
                             (
+                            
                             SELECT 
-                            R.no_reg, R.regpid, R.pid, R.current_dept_nr, 
-                            P.name_real, P.date_birth, (P.addr_str1 || P.kelurahan || P.kecamatan ||  P.kabupaten || P.addr_province) as alamat,
-                            R.doctor_id, D.name_real AS dpjp, R.reg_date, R.no_sep, T.description, T.real_amount
+                            R.no_reg, R.regpid, R.pid, R.current_dept_nr, (CASE WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),3,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),1) 
+                            WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
+                            P.name_real, P.date_birth, (P.addr_str1 ||' '|| P.kelurahan ||' '|| P.kecamatan ||' '||   P.kabupaten ||' '|| P.addr_province) as alamat,
+                            D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, R.no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
+                            H.room_prefix, C.class_name, B.hak_kelas_peserta
                             
-                            
-                            FROM regpatient R 
+                            FROM bill_patient_row T 
+                            LEFT JOIN regpatient R ON R.regpid = T.regpid
                             LEFT JOIN person P ON P.pid = R.pid
                             LEFT JOIN person D ON D.pid = R.doctor_id
-                            LEFT JOIN bill_patient_row T ON T.no_reg = R.no_reg
-                            
-                            WHERE  R.is_discharged = false AND R.is_inpatient = true
+                            LEFT JOIN hotel_bed K ON  K.hbid = R.current_bed_nr
+                            LEFT JOIN hotel_room H ON H.hrid = K.hrid
+                            LEFT JOIN hotel_class C ON C.hcid = H.hcid
+                            LEFT JOIN verifikasi_bpjs B ON B.regpid = R.regpid
+                            WHERE   R.is_discharged = false AND R.is_inpatient = TRUE AND R.no_sep <> '' 
                             
                             ) G
                             GROUP BY no_reg  ";
@@ -173,8 +193,9 @@ class mbpjs extends CI_Model{
                     $qwr= "UPDATE bpjs A, bpjs_temp B
                             SET A.no_reg = B.no_reg, A.rm = B.rm,
                             A.nama_pasien = B.nama_pasien, A.tgl_lahir = B.tgl_lahir, 
-                            A.alamat = B.alamat, A.dpjp = B.dpjp,
-                            A.sep = B.sep, A.tagihan = B.tagihan
+                            A.alamat = B.alamat, A.dpjp = B.dpjp, A.tgl_reg = B.tgl_reg,
+                            A.masa_inap = B.masa_inap, A.sep = B.sep, A.tagihan = B.tagihan,
+                            A.bangsal = B.bangsal, A.kelas = B.kelas, A.hak_kelas = B.hak_kelas
                             WHERE A.no_reg = B.no_reg ";
                     $qsyc = $this->db->query($qwr);
                         // if ($qsyc->num_rows() > 0) {
