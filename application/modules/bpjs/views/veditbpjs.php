@@ -211,7 +211,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="selisih_tagihan" class="number-separator3"  name="selisih_tagihan" value="<?php echo $selisih_tagihan; ?>" readonly> 
+                    <input type="text"  id="selisih_tagihan" name="selisih_tagihan" value="<?php echo $selisih_tagihan; ?>" readonly> 
                 </td>
             </tr>
 
@@ -472,6 +472,6 @@ function price() {
 	var tgh = document.getElementById("tagihan").value.replace(/[^0-9]/, '') ;
     var grp = document.getElementById("grouping").value.replace(/[^0-9]/, '') ;
     var iu = document.getElementById("iur").value.replace(/[^0-9]/, '') ;
-        document.getElementById("selisih_tagihan").value = tgh - grp - iu ;
+        document.getElementById("selisih_tagihan").value = tgh ;
     }
 </script>
