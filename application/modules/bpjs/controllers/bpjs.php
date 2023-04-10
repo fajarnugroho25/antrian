@@ -50,7 +50,7 @@ class bpjs extends CI_Controller
         $resultiur = preg_replace("/[^0-9]/", "", $iur);
 
         $selisih_tagihan = $this->input->post('selisih_tagihan');
-        $resultselisih_tagihan = preg_replace("/[^0-9]/", "", $selisih_tagihan);
+        $resultselisih_tagihan = preg_replace("/[^0-9\-]/", "", $selisih_tagihan);
 
             $no_reg1 = $this->input->post('no_reg');
 			$rm = $this->input->post('rm');
@@ -136,7 +136,7 @@ class bpjs extends CI_Controller
             $resultiur = preg_replace("/[^0-9]/", "", $iur);
 
             $selisih_tagihan = $this->input->post('selisih_tagihan');
-            $resultselisih_tagihan = preg_replace("/[^0-9]/", "", $selisih_tagihan);
+            $resultselisih_tagihan = preg_replace("/[^0-9\-]/", "", $selisih_tagihan);
 
                 $no_reg1 = $this->input->post('no_reg');
                 $rm = $this->input->post('rm');

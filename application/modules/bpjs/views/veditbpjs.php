@@ -344,14 +344,14 @@ src="easy-number-separator.js"
     
   });
 
-  src="easy-number-separator.js"
-  easyNumberSeparator({
-    selector: '.number-separator3',
-    separator: '.',
-    // decimalSeparator: ',',
-     resultInput: '#selisih_tagihan',
+//   src="easy-number-separator.js"
+//   easyNumberSeparator({
+//     selector: '.number-separator3',
+//     separator: '.',
+//     // decimalSeparator: ',',
+//      resultInput: '#selisih_tagihan',
     
-  });
+//   });
 
   
 
@@ -472,6 +472,6 @@ function price() {
 	var tgh = document.getElementById("tagihan").value.replace(/[^0-9]/, '') ;
     var grp = document.getElementById("grouping").value.replace(/[^0-9]/, '') ;
     var iu = document.getElementById("iur").value.replace(/[^0-9]/, '') ;
-        document.getElementById("selisih_tagihan").value = tgh ;
+        document.getElementById("selisih_tagihan").value = tgh.replace(/[^0-9]/,'') - grp.replace(/[^0-9]/,'') - iu.replace(/[^0-9]/,'');
     }
 </script>
