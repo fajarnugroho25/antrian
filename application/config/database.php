@@ -97,10 +97,10 @@ $db['otherdbMySQL'] = array(
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'srv.skom.id',
-	'username' => 'uc1azjni_fajarnugroho25',
-	'password' => 'sarjono@bengkel',
-	'database' => 'uc1azjni_antrian',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'antrian',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
