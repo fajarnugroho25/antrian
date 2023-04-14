@@ -18,8 +18,8 @@ class mbpjs extends CI_Model{
                     R.no_reg, R.regpid, R.pid, R.current_dept_nr, (CASE WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),3,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),1) 
                     WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                     P.name_real, P.date_birth, (P.addr_str1 || P.kelurahan || P.kecamatan ||  P.kabupaten || P.addr_province) as alamat,
-                    D.name_real AS dpjp,  to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, R.no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                    H.room_prefix, C.class_name, B.hak_kelas_peserta
+                    D.name_real AS dpjp,  to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
+                    H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta
                     
                     FROM bill_patient_row T 
                     LEFT JOIN regpatient R ON R.regpid = T.regpid
@@ -29,7 +29,7 @@ class mbpjs extends CI_Model{
                     LEFT JOIN hotel_room H ON H.hrid = K.hrid
                     LEFT JOIN hotel_class C ON C.hcid = H.hcid
                     LEFT JOIN verifikasi_bpjs B ON B.regpid = R.regpid
-                    WHERE   R.is_discharged = false AND R.is_inpatient = TRUE AND R.no_sep <> '' --R.no_reg = '2303200761' 
+                    WHERE   R.is_discharged = false AND R.is_inpatient = TRUE AND R.ifirm_id IN ('11653','11540','11577') --R.no_reg = '2303200761' 
                     
                     ) G
                     GROUP BY no_reg ";
@@ -53,8 +53,8 @@ class mbpjs extends CI_Model{
                 R.no_reg, R.regpid, R.pid, R.current_dept_nr, (CASE WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),3,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),1) 
                 WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                 P.name_real, P.date_birth, (P.addr_str1 ||' '|| P.kelurahan ||' '|| P.kecamatan ||' '||   P.kabupaten ||' '|| P.addr_province) as alamat,
-                D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, R.no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                H.room_prefix, C.class_name, B.hak_kelas_peserta
+                D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
+                H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta
                 
                 FROM bill_patient_row T 
                 LEFT JOIN regpatient R ON R.regpid = T.regpid
@@ -64,7 +64,7 @@ class mbpjs extends CI_Model{
                 LEFT JOIN hotel_room H ON H.hrid = K.hrid
                 LEFT JOIN hotel_class C ON C.hcid = H.hcid
                 LEFT JOIN verifikasi_bpjs B ON B.regpid = R.regpid
-                WHERE   R.is_discharged = false AND R.is_inpatient = TRUE AND R.no_sep <> '' AND R.no_reg = '{$no_reg}' --R.no_reg = '2303200761' 
+                WHERE   R.is_discharged = false AND R.is_inpatient = TRUE AND R.ifirm_id IN ('11653','11540','11577') AND R.no_reg = '{$no_reg}' --R.no_reg = '2303200761' 
                 
                 ) G
                 GROUP BY no_reg ";
@@ -163,8 +163,8 @@ class mbpjs extends CI_Model{
                             R.no_reg, R.regpid, R.pid, R.current_dept_nr, (CASE WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),3,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),1) 
                             WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                             P.name_real, P.date_birth, (P.addr_str1 ||' '|| P.kelurahan ||' '|| P.kecamatan ||' '||   P.kabupaten ||' '|| P.addr_province) as alamat,
-                            D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, R.no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                            H.room_prefix, C.class_name, B.hak_kelas_peserta, ( CASE WHEN R.is_discharged = 'false' THEN '1' ELSE '2' END ) as statuss
+                            D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
+                            H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta, ( CASE WHEN R.is_discharged = 'false' THEN '1' ELSE '2' END ) as statuss
                             
                             
                             FROM bill_patient_row T 
@@ -175,7 +175,7 @@ class mbpjs extends CI_Model{
                             LEFT JOIN hotel_room H ON H.hrid = K.hrid
                             LEFT JOIN hotel_class C ON C.hcid = H.hcid
                             LEFT JOIN verifikasi_bpjs B ON B.regpid = R.regpid
-                            WHERE  (R.is_discharged = false AND R.is_inpatient = TRUE AND R.no_sep <> '') OR (DATE_PART('DAY', NOW() - R.reg_date) <= '1' AND R.is_inpatient = TRUE AND R.no_sep <> '' )
+                            WHERE  (R.is_discharged = false AND R.is_inpatient = TRUE AND R.ifirm_id IN ('11653','11540','11577')) OR (DATE_PART('DAY', NOW() - R.reg_date) <= '1' AND R.is_inpatient = TRUE AND R.ifirm_id IN ('11653','11540','11577') )
                             
                             ) G
                             GROUP BY no_reg  ";
