@@ -31,16 +31,22 @@
         <tr>        
           <td><?php echo $d->no_reg; ?></td>
           <td><?php echo $d->rm; ?></td>
-          <td><?php echo $d->nama_pasien; ?></td>
+          <?php
+          if ($d->status < 2) {
+                    echo  ' <td style=" text-align: left; ">' . $d->nama_pasien . '</td>';   
+          } else { 
+                    echo ' <td style=" text-align: left; background-color:#1E90FF; color:white; border-radius: 4px; ">' . $d->nama_pasien . '</td>';              
+          }
+          ?>
           <td ><?php echo $d->dpjp; ?></td>
           <td style="text-align: right;"><?php echo number_format($d->tagihan); ?></td>
           <td style="text-align: right;"><?php echo number_format($d->grouping); ?></td>
           <td style="text-align: right;"><?php echo number_format($d->iur); ?></td>
           <?php
           $cek = @(($d->selisih_tagihan / $tagihan) * 100 );
-          if ($cek < 100) {
+          if ($cek > 100) {
                     echo  ' <td style=" text-align: right; background-color:#7FFF00; color:black; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';   
-          } else if ($cek > 100) {
+          } else if ($cek < 100) {
                     echo ' <td style=" text-align: right; background-color:#DC143C; color:white; border-radius: 4px;">' . number_format($d->selisih_tagihan) . '</td>';  
           } else { 
                     echo ' <td style=" text-align: right; ">' . number_format($d->selisih_tagihan) . '</td>';              

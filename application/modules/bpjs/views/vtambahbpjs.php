@@ -358,8 +358,8 @@ function price() {
 	var tgh = document.getElementById("tagihan").value.replace(/[^0-9]/, '') ;
     var grp = document.getElementById("grouping").value.replace(/[^0-9]/, '') ;
     var iu = document.getElementById("iur").value.replace(/[^0-9]/, '') ;
-        document.getElementById("selisih_tagihan").value = tgh.replace(/[^0-9]/,'') - grp.replace(/[^0-9]/,'') - iu.replace(/[^0-9]/,'');
-    }
+        document.getElementById("selisih_tagihan").value = parseInt(grp.replace(/[^0-9]/,'')) + parseInt(iu.replace(/[^0-9]/,'')) - parseInt(tgh.replace(/[^0-9]/,'')) ;
+   }
 </script>
 
 <script type="text/javascript">
