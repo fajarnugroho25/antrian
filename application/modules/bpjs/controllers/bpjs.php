@@ -153,10 +153,12 @@ class bpjs extends CI_Controller
                 $icdx2 =  $this->input->post('icdx2'); 
                 $icdx3 =  $this->input->post('icdx3'); 
                 $icdx4 =  $this->input->post('icdx4'); 
+                $icdx5 =  $this->input->post('icdx5'); 
                 $icdix =  $this->input->post('icdix');    
                 $icdix2 =  $this->input->post('icdix2'); 
                 $icdix3 =  $this->input->post('icdix3'); 
                 $icdix4 =  $this->input->post('icdix4'); 
+                $icdix5 =  $this->input->post('icdix5');
                 $catatan =  $this->input->post('catatan');        
         
                 if ($this->input->post('grouping')==''){
@@ -164,7 +166,7 @@ class bpjs extends CI_Controller
                 }
                 else {
                         // Edit Data
-                       $result = $this->mbpjs->edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan);
+                       $result = $this->mbpjs->edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdx5, $icdix, $icdix2, $icdix3, $icdix4, $icdix5, $catatan);
                        if ($result){
                        echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-2)</script>";    
                        } else {
@@ -206,7 +208,7 @@ class bpjs extends CI_Controller
                 foreach ($result as $icd10) {
                     $aRow = array();
                     $aRow['label'] = $icd10->icd_nama;
-                    $aRow['value'] = $icd10->icd_kode;
+                    $aRow['value'] = $icd10->icd_kode . " - " . $icd10->icd_nama ;
 
                     $data[] = $aRow;
                 }
@@ -232,7 +234,7 @@ class bpjs extends CI_Controller
                 foreach ($result as $icd9) {
                     $aRow = array();
                     $aRow['label'] = $icd9->icd_nama;
-                    $aRow['value'] = $icd9->icd_kode;
+                    $aRow['value'] = $icd9->icd_kode . " - " . $icd9->icd_nama;
 
                     $data[] = $aRow;
                 }

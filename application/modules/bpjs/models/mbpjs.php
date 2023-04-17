@@ -86,7 +86,7 @@ class mbpjs extends CI_Model{
                 'tgl_reg'=>$tgl_reg,
                 'masa_inap'=>$masa_inap,
                 'sep'=>$sep,
-                'bangsal'=>$sep,
+                'bangsal'=>$bangsal,
                 'kelas'=>$kelas,
                 'hak_kelas'=>$hak_kelas,
                 'tagihan'=>$tagihan,
@@ -122,7 +122,7 @@ class mbpjs extends CI_Model{
           }
 
         
-          function edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan){   
+          function edit($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $sep, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdx5, $icdix, $icdix2, $icdix3, $icdix4, $icdix5, $catatan){   
             $data = array(
                  'rm'=>$rm,
                  'nama_pasien'=>$nama_pasien,
@@ -138,10 +138,12 @@ class mbpjs extends CI_Model{
                     'icdx_2'=>$icdx2,
                     'icdx_3'=>$icdx3,
                     'icdx_4'=>$icdx4,
+                    'icdx_5'=>$icdx5,
                     'icdix'=>$icdix,
                     'icdix_2'=>$icdix2,
                     'icdix_3'=>$icdix3,
                     'icdix_4'=>$icdix4,
+                    'icdix_5'=>$icdix5,
                     'catatan'=>$catatan,
             
             );    
