@@ -7,19 +7,17 @@
             <h3 class="page-title">List Pasien BPJS</h3>
             
 <div class="btn-toolbar">
-      <?php if ($this->session->unituser == 116) { ?>
+<?php if ($this->session->unit_id == 116) { ?>
         <a class="btn btn-primary" href="<?php echo base_url();?>bpjs/updatebpjs" role="button">Update Data</a>
 
-      <?php } else if ($this->session->unituser == 50) { ?>
+      <?php } else if ($this->session->unit_id == 530) { ?>
               
         <a class="btn btn-primary" href="<?php echo base_url();?>bpjs/updatebpjs" role="button">Update Data</a>
-           
+        
       <?php } else { ?>
-
-                
-      <?php } ?>
-    
+  <?php } ?>        
 </div>
+
 <div class="well">
 
     <table class="table table-striped table-bordered data">
