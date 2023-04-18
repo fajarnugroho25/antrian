@@ -10,7 +10,7 @@ class mlogin extends CI_Model{
     
     
     function login($username, $password){
-    $this->db->select('admin.user,dokter.nama_dokter as nama_dokter,pass,akses,unit_id,nama, admin.id,dokter.id as id_dokter,akses_item, admin_status,status,unit_id,ttd,status_perizinan,gudang_id,nik,personauto,kprs, admin_ruang, tglawalcb, maccess');
+    $this->db->select('admin.user,dokter.nama_dokter as nama_dokter,pass,akses,unit_id,unituser,nama, admin.id,dokter.id as id_dokter,akses_item, admin_status,status,unit_id,ttd,status_perizinan,gudang_id,nik,personauto,kprs, admin_ruang, tglawalcb, maccess');
     $this->db->from('admin');
     $this->db->join('dokter', 'dokter.user = admin.user', 'left');  
     $this->db->where('admin.user', $username);

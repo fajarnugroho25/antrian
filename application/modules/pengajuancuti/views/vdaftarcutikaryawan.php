@@ -134,7 +134,7 @@
         </table>
 <br><br><br>
     <div class="table-responsive">
-        <table id="perbaikan" class="table table-striped table-bordered ">
+        <table id="cuti" class="table table-striped table-bordered ">
       <thead>
         <tr> 
           <th>No </th>
@@ -167,13 +167,13 @@
   
 var  dataTablecuti;
   $(document).ready( function () {
-  dataTablecuti=  $('#perbaikan').DataTable({
+  dataTablecuti=  $('#cuti').DataTable({
         // "scrollX": true,
         "ajax": {
                 "url": base_url+"index.php/pengajuancuti/ajaxListCutiKar",
                 "type": "POST"
               },
-
+              
               "emptyTable": "Tidak Ada Data Pesan",
               "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
                 "paging":   true,
@@ -384,7 +384,7 @@ $(document).on("click", "#search", function(){
 function tampilData(){
 
 
-    dataTablePencapaian = $('#perbaikan').DataTable({
+    dataTablePencapaian = $('#cuti').DataTable({
                 "destroy": true,
                 "ajax": {
                   "url": base_url+"index.php/pengajuancuti/ajaxListCutiKar/",

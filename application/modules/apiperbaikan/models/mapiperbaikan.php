@@ -19,6 +19,18 @@ class mapiperbaikan extends CI_Model{
 
     }
 
+     function get_listperbaikanumum(){
+        $query = "SELECT * FROM perbaikan
+        left join unit on unit.unit_id = perbaikan.unit_id 
+        left JOIN jenis_perbaikan ON jenis_perbaikan.id_jenis = perbaikan.id_jenis
+        LEFT JOIN admin ON admin.USER = perbaikan.petugas
+
+        where jenis_perbaikan.`status`='IPSRS' and perbaikan.status!='2' and perbaikan.petugas !='' order by prioritas, id_perbaikan ";
+        $result = $this->db->query($query);
+        return $result->result_array();
+
+    }
+
     function get_prioritas(){
         $query = "select * from prioritas";
         $result = $this->db->query($query);

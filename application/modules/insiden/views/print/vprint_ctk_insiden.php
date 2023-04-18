@@ -2,7 +2,7 @@
 if (!empty($datainsiden)) {
     foreach ($datainsiden as $row) :
 
-        $nama_pasien = $row->nama_pasien;
+        $nama = $row->nama;
         $no_rm = $row->no_rm;
         $ruangan = $row->ruangan;
         $umur = $row->umur;
@@ -26,11 +26,14 @@ if (!empty($datainsiden)) {
         $tindakankejadian = $row->tindakankejadian;
         $tindakanoleh = $row->tindakan_oleh;
         $langkahunit = $row->langkahunit;
-        $tgl_buat = $row->tgl_buat; //tgl lapor
+        $tgl_input = $row->tgl_input; //tgl lapor
         $tgl_terima = $row->tgl_terima;
         $status = $row->status;
         $verifikator = $row->verifikator;
         $grading = $row->grading;
+        $tipe_insiden = $row->nama_tipe;
+        $rekom = $row->rekom;
+        $komite = $row->verifikator_komite;
 
 
     endforeach;
@@ -49,12 +52,12 @@ if (!empty($datainsiden)) {
 
 <table border="0" width=100%>
     <button id="printPageButton" onClick="window.print();">Print</button>
+
     <tr>
 
         <td>
             <h2>
-                <center>LAPORAN INSIDEN <br>
-                    KPRS KASIH IBU SURAKARTA
+                 <center> <img src="<?php echo base_url();?>public/images/logo_big.gif" width="300" height="40"> <br> LAPORAN INSIDEN KESELAMATAN PASIEN
                 </center>
             </h2>
             <h4>
@@ -73,7 +76,7 @@ if (!empty($datainsiden)) {
                 <tr>
                     <td>-Nama</td>
                     <td>:</td>
-                    <td><?php echo $nama_pasien; ?></td>
+                    <td><?php echo $nama; ?></td>
                 </tr>
                 <tr>
                     <td>-RM</td>
@@ -231,7 +234,7 @@ if (!empty($datainsiden)) {
                 Tanggal
             </td>
             <td>
-                <?php echo $tgl_buat; ?>
+                <?php echo $tgl_input; ?>
             </td>
         </tr>
         <tr>
@@ -256,6 +259,30 @@ if (!empty($datainsiden)) {
             </td>
             <td>
                 <?php echo $grading; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tipe Insiden
+            </td>
+            <td>
+                <?php echo $tipe_insiden; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rekomendasi
+            </td>
+            <td>
+                <?php echo $rekom; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Komite
+            </td>
+            <td>
+                <?php echo $komite; ?>
             </td>
         </tr>
     </table>

@@ -30,7 +30,7 @@
 
     <div class="well">
 
-        <table id="kendaraan" class="table table-striped table-bordered ">
+        <table id="ruangan" class="table table-striped table-bordered ">
             <thead>
                 <tr>
                     <th></th>
@@ -42,6 +42,7 @@
                     <th>Keperluan</th>
                     <th>Bagian</th>
                     <th>Nama Peminjam</th>
+                    <th>Tgl Input </th>
                     <th>Action</th>
 
                 </tr>
@@ -74,6 +75,9 @@
                         </td>
                         <td>
                             <?php echo $r->user_peminta; ?>
+                        </td>
+                        <td>
+                            <?php echo $r->tgl_input; ?>
                         </td>
 
 

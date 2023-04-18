@@ -24,7 +24,7 @@
 
   
 
-    <table id="perbaikan" class="table table-striped table-bordered ">
+    <table id="cuti" class="table table-striped table-bordered ">
       <thead>
         <tr> 
           <th>No </th>
@@ -54,7 +54,7 @@
   
 var  dataTablecuti;
   $(document).ready( function () {
-  dataTablecuti=  $('#perbaikan').DataTable({
+  dataTablecuti=  $('#cuti').DataTable({
         "ajax": {
                 "url": base_url+"index.php/pengajuancuti/ajaxListCutiAllKar",
                 "type": "POST"

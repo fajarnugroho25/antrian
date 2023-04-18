@@ -192,7 +192,7 @@ class mpengajuancuti extends CI_Model
                     LEFT JOIN admin a ON pc.nik = a.nik
                     LEFT JOIN unit u ON a.unituser = u.unit_id
                     WHERE jenis_cuti='{$jeniscuti}'
-                    ORDER BY  statusizin ASC,tanggalinput DESC limit = '10'";     
+                    ORDER BY  statusizin ASC,tanggalinput DESC";     
                        } 
                 else{
                     $query = "SELECT pc.*,a.unit_id,a.unituser,a.nama,u.unit_nama  FROM `pengajuancuti` pc 
@@ -422,7 +422,7 @@ GROUP BY  a.nik";
             $query = "SELECT a.nik, a.nama,u.unit_nama, a.hakcuti, IFNULL(SUM(diizinkanhari),0) as digunakan, a.hakcuti-IFNULL(SUM(diizinkanhari),0) as sisa  FROM admin a
                     LEFT JOIN `pengajuancuti` pc  ON a.nik = pc.nik
                     LEFT JOIN unit u ON u.unit_id = a.unituser 
-                    WHERE a.unituser = '{$unit}' AND sisacutitahun = '{$tahun}'  AND (jenis_cuti = '{$jeniscuti}' OR jenis_cuti IS NULL) AND a.status = '1'
+                    WHERE a.unituser = '{$unit}' AND sisacutitahun = '{$tahun}'  AND (jenis_cuti = '{$jeniscuti}' || jenis_cuti IS NULL) AND a.status = '1'
                     GROUP BY a.nik
                     UNION
 
@@ -457,7 +457,17 @@ GROUP BY  a.nik";
                     LEFT JOIN `pengajuancuti` pc  ON a.nik = pc.nik
                     LEFT JOIN unit u ON u.unit_id = a.unituser 
                     WHERE jenis_cuti = '{$jeniscuti}' AND sisacutitahun = '{$tahun}'  AND a.status = '1'
-                    GROUP BY a.nik";
+                    GROUP BY a.nik
+
+                    UNION
+
+                    SELECT a.nik, a.nama,u.unit_nama, a.hakcuti, (a.hakcuti*0)  as digunakan, a.hakcuti as sisa  FROM  admin a
+                    LEFT JOIN `pengajuancuti` pc  ON a.nik = pc.nik
+                    LEFT JOIN unit u ON u.unit_id = a.unituser 
+                    WHERE  jenis_cuti = '{$jeniscuti}' AND  a.cutitahun = '{$tahunold}' AND a.status = '1'
+                    
+                    GROUP BY nik
+                    ";
         }
         // else if($unit=='' && $tahun=='' && $jeniscuti!=''){
         //     $query = "SELECT a.nik, a.nama,u.unit_nama, a.hakcuti, IFNULL(SUM(diizinkanhari),0) as digunakan, a.hakcuti-IFNULL(SUM(diizinkanhari),0) as sisa  FROM admin a

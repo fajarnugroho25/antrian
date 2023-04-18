@@ -10,7 +10,7 @@ class mperbaikan extends CI_Model
     }
 
 
-    function tampilkan_perbaikan()
+    function tampilkan_perbaikanedp()
     {
 
         $this->db->select('*, perbaikan.status as stat_perb');
@@ -19,7 +19,24 @@ class mperbaikan extends CI_Model
         $this->db->join('jenis_perbaikan', 'jenis_perbaikan.id_jenis = perbaikan.id_jenis', 'left');
         $this->db->join('prioritas', 'prioritas.id = perbaikan.prioritas', 'left');
 
-        // $this->db->where('antrian_fisio.status !=', '9');
+        $this->db->where('jenis_perbaikan.status =', 'EDP');
+        $this->db->where('perbaikan.status !=', '2');
+        $this->db->order_by("perbaikan.prioritas", "perbaikan.id_perbaikan", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function tampilkan_perbaikanumum()
+    {
+
+        $this->db->select('*, perbaikan.status as stat_perb');
+        $this->db->from('perbaikan');
+        $this->db->join('unit', 'unit.unit_id = perbaikan.unit_id', 'left');
+        $this->db->join('jenis_perbaikan', 'jenis_perbaikan.id_jenis = perbaikan.id_jenis', 'left');
+        $this->db->join('prioritas', 'prioritas.id = perbaikan.prioritas', 'left');
+
+        $this->db->where('jenis_perbaikan.status =', 'IPSRS');
+        //$this->db->where('perbaikan.status !=', '2');
         $this->db->order_by("perbaikan.prioritas", "perbaikan.id_perbaikan", "asc");
         $query = $this->db->get();
         return $query->result();
@@ -103,7 +120,7 @@ class mperbaikan extends CI_Model
         return $query->result();
     }
 
-    function perbarui($tgl_input, $unit_id, $user_peminta, $keluhan, $prioritas, $id_jenis, $status,  $id_perbaikan)
+    function perbarui($tgl_input, $unit_id, $user_peminta, $keluhan, $prioritas, $id_jenis, $user, $status,  $id_perbaikan)
     {
 
         $data = array(
@@ -113,6 +130,7 @@ class mperbaikan extends CI_Model
             'keluhan' => $keluhan,
             'prioritas' => $prioritas,
             'id_jenis' => $id_jenis,
+            'petugas' => $user,
             'status' => $status,
 
 
@@ -148,9 +166,33 @@ class mperbaikan extends CI_Model
         }
     }
 
-    function combo_jenis()
+    function combo_jenisedp()
     {
-        $query = "select * from jenis_perbaikan";
+        $query = "select * from jenis_perbaikan where status='EDP'";
+        $q = $this->db->query($query);
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+    }
+
+    function combo_jenisumum()
+    {
+        $query = "select * from jenis_perbaikan where status='IPSRS'";
+        $q = $this->db->query($query);
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+    }
+
+    function combo_petugasumum()
+    {
+        $query = "select * from admin where perbaikan='1' order by nama";
         $q = $this->db->query($query);
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $row) {

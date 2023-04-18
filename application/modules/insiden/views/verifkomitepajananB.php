@@ -15,23 +15,32 @@ $verifikator = $this->session->nama;
       $tgl_masuk = $row->tgl_masuk;
       $pembuat = $row->pembuat;
       $k_insiden = $row->k_insiden;
-      $tgl_insiden = $row->tgl_insiden;
-      $insiden = $row->insiden;
-      $kronologis = $row->kronologis;
-      $jenis_insidenk3 = $row->jenis_insidenk3;
-      $pelapor_insiden =$row->pelapor_insiden;
-      $insiden_terjadi =$row->insiden_terjadi;
-      $insiden_pasien =$row->insiden_pasien;
-      $tempat_insiden = $row->tempat_insiden;
-      $spesialisasi = $row->spesialisasi;
-      $unit_utama = $row->unit_utama;
-      $unit_dulu  = $row->unit_dulu;
-      $akibat_insiden =$row->akibat_insiden;
-      $tindakankejadian =$row->tindakankejadian;
-      $tindakanoleh =$row->tindakan_oleh;
-      $langkahunit =$row->langkahunit;
       $tgl_input=$row->tgl_input;
       $tgl_terima = $row->tgl_terima;
+
+      $tgl_pemberitahuan = $row->tgl_pemberitahuan;
+      $kotak = $row->kotak;
+      $perhatian = $row->perhatian;
+      $ruang = $row->ruang;
+      $pemantauan = $row->pemantauan;
+      $tgl_pemberitahuan = $row->tgl_pemberitahuan;
+      $diagnosa = $row->diagnosa;
+
+
+      $tgl_pajanan = $row->tgl_pajanan;
+      $tempat_kejadian   =  $row->tempat_kejadian;
+      $unit_terpajan = $row->unit_terpajan;
+      $atasan = $row->atasan;
+      $alamat2 = $row->alamat2;
+      $route = $row->route;
+      $bagian_tubuh = $row->bagian_tubuh;
+      $kronologi_pajanan = $row->kronologi_pajanan;
+      $pertolongan = $row->pertolongan;
+      $jenis_pertolongan = $row->jenis_pertolongan;
+      $sumber = $row->sumber;
+      $imunisasi = $row->imunisasi;
+      $tempat_pertolongan = $row->tempat_pertolongan;
+      $status = $row->status;
       $titel   = 'Perbarui';
       $aksi   = 'perbarui';
       $button   = 'Perbarui';
@@ -55,7 +64,7 @@ $verifikator = $this->session->nama;
     
 
     <div class="well">
-        <form id="user" method="post" action="<?php echo base_url(); ?>insiden/verif">
+        <form id="user" method="post" action="<?php echo base_url(); ?>insiden/inputkomitepajananB">
 
             <table>
                 <!-- <input type="hidden" name='tgl_input' class="form-control" value="<?= $tgl_input; ?>" readonly> -->
@@ -236,213 +245,119 @@ $verifikator = $this->session->nama;
 
 
         </table>
+<table>
+     <h4>B. RINCIAN KEJADIAN</h4>
 
-        <table>
-           <h4>B. RINCIAN KEJADIAN</h4>
-           
-        <tr>
-            <td>
-                <label><b>Tanggal & Waktu Insiden</b></label>
-            </td>
-            <td> </td>
-            <td>
-                <!-- <div id="datetimepicker4" class="input-append date"> -->
-                    <input type="text" id="tgl_insiden" name="tgl_insiden" readonly="readonly" value="<?php echo $tgl_insiden ?>" ></input>
-                   <!--  <span class="add-on">
-                        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> -->
-                    </span>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label><b>Insiden</b></label>
-            </td>
-            <td></td>
-            <td>
-                <input type="text" name="insiden" value="<?php echo $insiden ?>" >
-            </td>
-        </tr>
-        <tr>
+    <tr>
             <td valign="top">
-                <label><b>Kronologis Insiden</b></label>
-            </td>
-            <td></td>
+                <label><b>Setiap Kotak Dapat diisi :</b></label>
             <td>
-                <textarea id="kronologis" class="form-control" name="kronologis" > <?php echo $kronologis ?></textarea>
-            </td>
+
+                    <td style="padding-bottom:20px;">
+                        <?php $kotak = explode(",", $kotak);?>
+                        <div class="taglistmenu">
+                            <input type="checkbox" name="kotak[]" <?php echo (in_array("Diperiksa Dokter Gawat Darurat", $kotak)) ? 'checked' : ''; ?> value="Diperiksa Dokter Gawat Darurat" > Diperiksa Dokter Gawat Darurat &emsp; <br>
+                            <input type="checkbox" name="kotak[]" <?php echo (in_array("Dirujuk ke Dokter Pribadi atau Perusahaan", $kotak)) ? 'checked' : ''; ?> value="Dirujuk ke Dokter Pribadi atau Perusahaan"> Dirujuk ke Dokter Pribadi atau Perusahaan &emsp; <br>
+                            <input type="checkbox" name="kotak[]" <?php echo (in_array("Menolak Diperiksa Dokter Gawat Darurat", $kotak)) ? 'checked' : ''; ?> value="Menolak Diperiksa Dokter Gawat Darurat"> Menolak Diperiksa Dokter Gawat Darurat &emsp; <br>
+                            <input type="checkbox" name="kotak[]" <?php echo (in_array("Memilih Untuk Mencari Pertolongan Dokter Pribadi", $kotak)) ? 'checked' : ''; ?> value="Memilih Untuk Mencari Pertolongan Dokter Pribadi"> Memilih Untuk Mencari Pertolongan Dokter Pribadi &emsp; <br> 
+                        </td>
         </tr>
+
+
+        <tr>
+            <td valign="center">
+                <label><b>Untuk Perhatian</b></label>
+            <td>
+
+                    <td style="padding-bottom:20px;">
+                        <?php $perhatian = explode(",", $perhatian);?>
+                        <div class="taglistmenu">
+                            <input type="checkbox" name="perhatian[]" <?php echo (in_array("Tim PPI", $perhatian)) ? 'checked' : ''; ?> value="Tim PPI" > Tim PPI &emsp; 
+                            <input type="checkbox" name="perhatian[]" <?php echo (in_array("Poliklinik", $perhatian)) ? 'checked' : ''; ?> value="Poliklinik"> Poliklinik &emsp;
+                           <input type="checkbox" <?php echo (in_array("Lain-lain", $perhatian)) ? 'checked' : ''; ?> onclick="var input = document.getElementById('lain'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}" value="Lain-lain" name="perhatian[]"> Lain-lain, sebutkan
+                                        <?php $key = array_search('Lain-lain', $perhatian); ?>
+                                        <?php if($key === false) { ?>
+                                            <input id="lain" name="perhatian[]" disabled value=""> <br>
+                                        <?php } else { ?>
+                                            <input id="lain" name="perhatian[]" value="<?= $perhatian[$key+1] ?>"> <br>
+                                        <?php } ?>
+
+                        </td>
+        </tr>
+
+        <td>
+            <h5>Pasien Sumber Darah/Bahan Infeksius</h5>
+        </td>
+        
+        
+    
         <tr>
             <td>
-                <label><b>Jenis Insiden</b></label>
-            </td>
-            <td></td>
-                    <td>
-                        <select name='jenis_insidenk3' id='jenis_insidenk3'  >
-                            <option value='' disabled selected>Pilih Jenis Insiden</option>
-                            <?php
-                            foreach ($cbkejadian as $cb) {
-                             if ($cb->id_k3 == $jenis_insidenk3) {
-                                echo '<option value="' . $cb->id_k3 . '" selected >' . $cb->nama_insidenk3 . '</option>';
-                            } else {
-                                echo '<option value="' . $cb->id_k3 . '" >' . $cb->nama_insidenk3 . '</option>';
-                            }
-                        }
-                         ?>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label><b>Orang Pertama yang </b></label>
-                <label><b>Melaporkan Insiden </b></label>
+                <label><b>Ruang Rawat</b></label>
             </td>
             <td></td>
             <td>
-                <select name='pelapor_insiden' id='pelapor_insiden'  >
-                            <option value='' disabled selected>Pilih Pelapor</option>
-                            <?php
-                            foreach ($cbpelapor as $cb) {
-                             if ($cb->id_pelapor == $pelapor_insiden) {
-                                echo '<option value="' . $cb->id_pelapor . '" selected >' . $cb->pelapor . '</option>';
-                            } else {
-                                echo '<option value="' . $cb->id_pelapor . '" >' . $cb->pelapor . '</option>';
-                            }
-                        }
-                         ?>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label><b>Insiden Terjadi Pada</b></label>
-            </td>
-            <td></td>
-            <td>
-                <select name='insiden_terjadi' id='insiden_terjadi'  >
-                    <option value='' disabled selected>Insiden Pada</option>
+                <select name='ruang' id='ruang'>
+                    <option value=''disabled selected>Pilih Ruang</option>
+
                     <?php
-                    foreach ($cbterjadi as $cb) {
-                       if ($cb->id == $insiden_terjadi) {
-                        echo '<option value="' . $cb->id . '" selected >' . $cb->insidenpada . '</option>';
-                    } else {
-                        echo '<option value="' . $cb->id . '" >' . $cb->insidenpada . '</option>';
+                    foreach ($cbunit as $cbu) {
+                        if ($cbu->unit_id == $ruang) { 
+                            echo '<option value="' . $cbu->unit_id . '" selected >' . $cbu->unit_nama . '</option>';
+                        } else {
+                            echo '<option value="' . $cbu->unit_id . '" >' . $cbu->unit_nama . '</option>';
+                        }
                     }
-                }
-                ?>
+                    ?>
                 </select>
             </td>
         </tr>
         
         <tr>
-            <td>
-                <label><b>Tempat Insiden / Lokasi Kejadian</b></label>
+            <td valign="top">
+                <label><b>Pemantauan Pajanan </b></label>
+                <label><b>(Sumber pajanan dan riwayat infeksi)</b></label>
             </td>
             <td></td>
             <td>
-                <input type="text" name="tempat_insiden" value= "<?php echo $tempat_insiden ?>" placeholder="Sebutkan tempat pasien berada"  >
+                <textarea id="textarea" rows="8" cols="30" maxlength="500" class="form-control " name="pemantauan"><?= $pemantauan; ?></textarea>
+                <div id="textarea_feedback"></div>
             </td>
         </tr>
-       
-        <tr>
+
+         <tr>
+            <td valign="bottom">
+                <label><b>Tanggal Pemberitahuan</b></label>
+                <label><b>Atasan Langsung yang Terpajan</b></label>
+            </td>
+            <td> </td>
             <td>
-                <label><b>Unit / Departemen terkait Insiden</b></label>
+                <div id="datetimepicker5" class="input-append date">
+                    <input type="text" name="tgl_pemberitahuan" value="<?= $tgl_pemberitahuan; ?>" ></input>
+                    <span class="add-on">
+                        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        
+       <tr>
+            <td valign="top">
+                <label><b>Diagnosa Pasien </b></label>
             </td>
             <td></td>
             <td>
-               <select name='unit_utama' id='unit_utama'  >
-                <option value='' disabled selected>Pilih Unit</option>
-
-                <?php
-                foreach ($cbunit as $cbunit) {
-                    if ($cbunit->unit_id == $unit_utama) { 
-                        echo '<option value="' . $cbunit->unit_id . '" selected >' . $cbunit->unit_nama . '</option>';
-                    } else {
-                        echo '<option value="' . $cbunit->unit_id . '" >' . $cbunit->unit_nama . '</option>';
-                    }
-                }
-                ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label><b>Akibat Insiden Terhadap Pasien</b></label>
-        </td>
-        <td></td>
-        <td>
-            <select name='akibat_insiden' id='akibat_insiden'  >
-                <option value='' disabled selected>Sesuai Kasus Penyakit / Spesialisasi</option>
-                <?php
-                foreach ($cbakibat as $cb) {
-                   if ($cb->id_akibat == $akibat_insiden) {
-                    echo '<option value="' . $cb->id_akibat . '" selected >' . $cb->akibat . '</option>';
-                } else {
-                    echo '<option value="' . $cb->id_akibat . '" >' . $cb->akibat . '</option>';
-                }
-            }
-            ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td valign="top">
-            <label><b>Tindakan Setelah Kejadian dan Hasilnya</b></label>
-        </td>
-        <td></td>
-        <td>
-            <textarea id="tindakankejadian" class="form-control " name="tindakankejadian" ><?php echo $tindakankejadian ?></textarea>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label><b>Tindakan Dilakukan Oleh</b></label>
-        </td>
-        <td></td>
-        <td>
-            <select name='tindakan_oleh' id='tindakan_oleh'  >
-                <option value='' disabled selected>Tindakan Oleh</option>
-                <?php
-                foreach ($cbtindakan as $cb) {
-                   if ($cb->id_tindakan == $tindakanoleh) {
-                    echo '<option value="' . $cb->id_tindakan . '" selected >' . $cb->tindakan_oleh . '</option>';
-                } else {
-                    echo '<option value="' . $cb->id_tindakan . '" >' . $cb->tindakan_oleh . '</option>';
-                }
-            }
-            ?>
-            </select>
-        </td>
-    </tr>
-    
-
-<tr>
-    <td>
-        <label><b>Tanggal Pembuatan Laporan</b></label>
-    </td>
-    <td> </td>
-    <td>
-        <!-- <div id="datetimepicker2" class="input-append date"> -->
-            <input type="text" id="tgl_input" name="tgl_input" readonly="readonly" value="<?php echo $tgl_input ?>" ></input>
-           <!--  <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> -->
-            </span>
-        </div>
-    </td>
-</tr>
+                <textarea id="textarea" rows="8" cols="30" maxlength="500" class="form-control " name="diagnosa"><?= $diagnosa; ?></textarea>
+                <div id="textarea_feedback"></div>
+            </td>
+        </tr>
+                            </table>
 
 <tr>
     <td>
         <hr>
     </td>
-    <td>
-        <hr>
-    </td>
-    <td>
-        <hr>
-    </td>
 </tr>
-
 
 <tr>
     <td>
@@ -450,7 +365,7 @@ $verifikator = $this->session->nama;
     </td>
     <td> </td>
     <td>
-        <div id="datetimepicker5" class="input-append date">
+        <div id="datetimepicker2" class="input-append date">
             <input type="text" id="tgl_terima" name="tgl_terima" value="<?php echo $tgl_terima ?>" required></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
@@ -460,52 +375,34 @@ $verifikator = $this->session->nama;
 </tr>
 
 <tr>
-    <td>
-        <label><b>Probabilitas Insiden</b></label>
-        <!-- \\ini optionnya oke -->
-    </td>
-    <td></td>
-    <td>
-        <select name='probabilitas' id='probabilitas' required>
-            <option value='' disabled selected>Pilih Probabilitas</option>
-            <option value='1' >Sangat Jarang Terjadi (> 5 thn / kali)</option>
-            <option value='2' >Jarang Terjadi (> 2 - < 5 thn / kali)</option>
-            <option value='3' >Mungkin Terjadi (1 - < 2 thn / kali)</option>
-            <option value='4' >Sering Terjadi (bbrp kali / tahun)</option>
-            <option value='5' >Sangat Sering Terjadi (Tiap minggu / bulan)</option>
-        </select>
-    </td>
-
-    <td>
-        <label><b>Severity Insiden</b></label> 
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-
-    <td>
-        <select name='severity' id='severity' required>
-            <option value='' disabled selected>Pilih Severity</option>
-            <option value='1' >Tak Signifikan</option>
-            <option value='2' >Minor</option>
-            <option value='3' >Moderat</option>
-            <option value='4' >Mayor</option>
-            <option value='5' >Katatrospik</option>
-        </select>
-    </td>
-
-</tr>
+                    <td>
+                        <label><b>Verifikasi</b></label>
+                    </td>
+                    <td> &nbsp &nbsp</td>
+                    <td>
+                        <input type="radio" id="status" name="status" value="0" <?php if ($status == '0') {
+                                                                                    echo 'checked';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?> required > Belum Verif &nbsp &nbsp &nbsp &nbsp
+                        <input type="radio" id="status" name="status" value="1" <?php if ($status == '1') {
+                                                                                    echo 'checked';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?> required > Diverifikasi &nbsp &nbsp &nbsp &nbsp
+                    </td>
+                </tr>
 
 <tr>
-    <td>
-        <label><b>Grading</b></label>
+    <td valign="top">
+        <label><b>Rekomendasi</b></label>
     </td>
     <td></td>
     <td>
-        <input type="text" name="grading" id="resultGrading" required readonly>
+        <textarea id="rekomendasi" class="form-control" name="rekomendasi" > </textarea>
     </td>
 </tr>
+
 
 </table>
 <div style="padding-top:20px">
@@ -559,31 +456,30 @@ $verifikator = $this->session->nama;
     });
    });
 
-    $(document).ready(function(){
-       $('#sudah').hide();
-       $('#klik').click(function(){
-        $('#sudah').show();
+   
+                    $(document).ready(function(){
+                     $('#jenis').hide();
+                     $('#klk').click(function(){
+                        $('#jenis').show();
 
-    });
-       $('#tidak').click(function(){
-        $('#sudah').hide();
-    });
-   });
+                    });
+                     $('#no').click(function(){
+                        $('#jenis').hide();
+                    });
+                 });
 
-
-
-     $(document).ready(function(){
-        var unit_edit = 
-        $('#unit_edit').val();
-        console.log(unit_edit);
-        if (unit_edit != '') {
-         $('#pernah').show();
-         $('#sudah').show();
-     }   else{
-             $('#pernah').hide();
-             $('#sudah').hide();
-        }
-    });
+                    $(document).ready(function(){
+                        var jenis_pertolongan = 
+                        $('#jenis_pertolongan').val();
+                        console.log(jenis_pertolongan);
+                        if (jenis_pertolongan != '') {
+         // $('#pernah').show();
+                           $('#jenis').show();
+                       }   else{
+             // $('#pernah').hide();
+                           $('#jenis').hide();
+                       }
+                   });
     
     $('input[name="tindakan_oleh"]').click(function(e) {
       if(e.target.value === 'tim') {
@@ -601,7 +497,7 @@ $verifikator = $this->session->nama;
         $('#probabilitas').change(function(e){
         var id = e.target.value;
         var id_severity = $('#severity').val()
-        var url = "<?= base_url() ?>/index.php/insiden/ajaxGradingK3/"+id+"/"+id_severity
+        var url = "<?= base_url() ?>/index.php/insiden/ajaxGrading/"+id+"/"+id_severity
         if(id_severity !== null){
             $.ajax({
                 type: "GET",
@@ -619,7 +515,7 @@ $verifikator = $this->session->nama;
         $('#severity').change(function(e){
         var id = e.target.value;
         var id_probabilitas = $('#probabilitas').val()
-        var url = "<?= base_url() ?>/index.php/insiden/ajaxGradingK3/"+id_probabilitas+"/"+id
+        var url = "<?= base_url() ?>/index.php/insiden/ajaxGrading/"+id_probabilitas+"/"+id
         if(id_probabilitas !== null){
             $.ajax({
                 type: "GET",

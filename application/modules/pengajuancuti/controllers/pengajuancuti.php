@@ -243,14 +243,15 @@ class pengajuancuti extends CI_Controller
                 $data['sisacuti'] = $gethakcuti->hakcuti-$getsisacuti3->jml;
                 $data['thismonth'] = date('m');
                 $data['thisyear'] =  date('Y');
-                # code...
+               
             }
 
             elseif ($getsisacuti->jml == $gethakcuti->hakcuti) {
                     $data['sisacutitahun'] = $year;
-                    $data['sisacuti'] = $gethakcuti->hakcuti-$getsisacuti3->jml;
+                    $data['sisacuti'] = $gethakcuti->hakcuti-$getsisacuti2->jml;
                     $data['thismonth'] = date('m');
                     $data['thisyear'] =  date('Y');
+
             }
             //sisa cuti "tahun" jika masih sisa
             elseif ($getsisacuti->jml != 12 || $getsisacuti->jml != NULL) {
@@ -611,7 +612,6 @@ class pengajuancuti extends CI_Controller
         $this->session->set_userdata('kelompok',$post['kelompok']);
         $this->session->set_userdata('unit',$post['unit']);
         $this->session->set_userdata('tahun',$post['tahun']);
-
         $this->session->set_userdata('jeniscuti',$post['jeniscuti']);
            
 

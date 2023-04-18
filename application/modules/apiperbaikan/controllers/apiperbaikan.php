@@ -40,6 +40,12 @@ class apiperbaikan extends REST_Controller {
         $this->response($data, 200);
     }
 
+      function listperbaikanumum_get() {
+        $listperbaikanumum = $this->mapiperbaikan->get_listperbaikanumum();
+        $data['data'] = $listperbaikanumum;
+        $this->response($data, 200);
+    }
+
      function prioritas_get() {
         $prioritas = $this->mapiperbaikan->get_prioritas();
         $data['prioritas'] = $prioritas;

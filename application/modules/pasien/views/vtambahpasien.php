@@ -446,7 +446,7 @@ if (!empty($pasien)) {
                             </tr>
                             <tr>
                                 <td>
-                                    <label style="" id="label_prioritas"><b>Keterangan Prioritas</b></label>
+                                    <label  id="label_prioritas"><b>Keterangan Prioritas</b></label>
                                 </td>
                                 <td> &nbsp &nbsp</td>
                                 <td>

@@ -19,7 +19,7 @@
 
 <div class="well">
 
-    <table id="perbaikan" class="table table-striped table-bordered ">
+    <table id="fisio" class="table table-striped table-bordered ">
       <thead>
         <tr> 
           <th></th>     

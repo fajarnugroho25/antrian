@@ -36,10 +36,11 @@ class login extends CI_Controller {
     $result = $this->mlogin->login($user, $password);
     if ($result){
     // Simpan Session Username 
-    $data = array('user_name' => $result->user,'user_id' => $result->id, 'akses' => $result->akses,'akses_item' => $result->akses_item ,'kprs' => $result->kprs,'admin_ruang' => $result->admin_ruang , 'tglawalcb' => $result->tglawalcb, 'login' => TRUE);
+    $data = array('user_name' => $result->user,'user_id' => $result->id, 'akses' => $result->akses,'unituser' => $result->unituser,'akses_item' => $result->akses_item ,'kprs' => $result->kprs,'admin_ruang' => $result->admin_ruang , 'tglawalcb' => $result->tglawalcb, 'login' => TRUE);
     $this->session->set_userdata($data);
     $this->session->set_userdata('admin_status',$result->admin_status);
     $this->session->set_userdata('status_perizinan',$result->status_perizinan);
+    $this->session->set_userdata('unituser',$result->unituser);
     $this->session->set_userdata('unit_id',$result->unit_id);
     $this->session->set_userdata('gudang',$result->gudang_id);
     $this->session->set_userdata('ttd',$result->ttd);
@@ -62,7 +63,7 @@ class login extends CI_Controller {
     $result = $this->mlogin->login($user, $password);
     if ($result){
     // Simpan Session Username 
-    $data = array('user_name' => $result->user, 'user_id' => $result->id, 'akses' => $result->akses,'akses_item' => $result->akses_item ,'kprs' => $result->kprs,'admin_ruang' => $result->admin_ruang, 'tglawalcb' => $result->tglawalcb,'login' => TRUE);
+    $data = array('user_name' => $result->user, 'user_id' => $result->id,'unit_id' => $result->unit_id, 'akses' => $result->akses,'akses_item' => $result->akses_item ,'kprs' => $result->kprs,'admin_ruang' => $result->admin_ruang, 'tglawalcb' => $result->tglawalcb,'login' => TRUE);
     $this->session->set_userdata($data);
     $this->session->set_userdata('admin_status',$result->admin_status);
     $this->session->set_userdata('unit_id',$result->unit_id);

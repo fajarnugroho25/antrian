@@ -31,41 +31,163 @@ $tgl_akhir = ''; ?> -->
     <h3 class="page-title">Data Laporan Insiden</h3>
 
     <div class="well">
-      
-        <table id="insiden" class="table table-striped table-bordered ">
+    <table >
+        <tr>
+            <td>
+                <label><b>Unit</b></label>
+            </td>
+            <td> <p><b>:</b></p></td>
+            <td>
+             <select class='js-example-basic-single' name='unit_utama' id='unit_utama'>
+                <option value='' disabled selected>Pilih Unit</option>
+
+                <?php
+                foreach ($cbunit as $cbu) {
+                    if ($cbu->unit_id == $unit_utama) { 
+                        echo '<option value="' . $cbu->unit_id . '" selected >' . $cbu->unit_nama . '</option>';
+                    } else {
+                        echo '<option value="' . $cbu->unit_id . '" >' . $cbu->unit_nama . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </td>
+                <td>
+                  <br><br><br>
+            </tr>
+
+
+
+           <tr>
+                <td>
+                    <label><b>Tahun Insiden</b></label>
+                </td>
+                <td> <p><b>:</b></p></td>
+                <td>
+                    <select class="selectpicker" name='tahun' id='tahun'>
+                         <option value='' disabled selected>Pilih Tahun</option>
+                          <?php 
+                          $now = date('Y');
+                          for ($a=2021; $a<= $now;$a++)
+                          {
+                           echo  '<option value='.$a.'>'.$a.'</option>';
+                          }
+                            ?></select>
+                </td>
+                <td>
+                  <br><br><br>
+            </tr>
            
+            <tr>
+                <td>
+                    <label><b>Klasifikasi Insiden</b></label>
+                </td>
+                <td></td>
+                <td>
+                 <select class='selectpicker' name='k_insiden' id='k_insiden'>
+                    <option value='' disabled selected>Pilih Insiden</option>
 
-            <thead>
+                    <?php
+                    foreach ($cbinsiden as $i) { 
+                            echo '<option value="' . $i->id_klasifikasi . '" >' . $i->nama_insiden . '</option>';
+                        }
+                    ?>
+                </select>
+            </td>
+                <td>
+                  <br><br><br>
+            </tr>
 
-                <tr>
-                    <th></th>
-                   <!--  <th>Tanggal Insiden</th> -->
-                    <th>Jenis Insiden</th>
-                    <th>Biru</th>
-                    <th>Hijau</th>
-                    <th>Kuning</th>
-                    <th>Merah</th>
-                </tr>
-            </thead>
-            <tbody>
+            <tr>
+                <td colspan="3"><button class="btn btn-primary" id="search">Cari</button>
+              <button class="btn btn-primary" id="excel">Excel</button>
+              <button class="btn btn-primary" id="print">Print</button>
+              
+              </td>
+          </tr>
+           
+        </table>
+<br><br><br>
 
-                <?php foreach ($laporaninsiden as $l){ ?> 
-                    <tr>            
-                        <td></td>
-                        <!-- td><?php echo $l->tgl_insiden; ?></td> -->
-                        <td><?php echo $l->jenis; ?></td>
-                        <td><?php echo $l->jum_biru; ?></td>
-                        <td><?php echo $l->jum_hijau; ?></td>
-                        <td><?php echo $l->jum_kuning; ?></td>
-                        <td><?php echo $l->jum_merah; ?></td>
-                    </tr>   
-            <?php  } ?>
-        </tbody>
-    </table>
+ <table id="laporan" border="1px"  class="table table-bordered table-hover dt-responsive nowrap" style="width: 100%">
 
+
+        
+        </table>
 
 </div>
 <script type="text/javascript">
+    
+   var  dataTableHasil;
+
+   $(document).ready( function () {
+    $('#laporan').DataTable({
+        "ajax": {
+            "url": base_url+"index.php/insiden/ajaxlaporan",
+            "type": "POST"
+        },
+
+        "emptyTable": "Tidak Ada Data Pesan",
+        "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+        "paging":   true,
+        "ordering": true,
+        "info":     true,
+
+
+
+    });
+} );
+
+   $(document).on("click", "#search", function(){
+
+        var data ={
+         unit: $('select[name=unit]').val(),
+         jeniscuti: $('select[name=jeniscuti]').val(),
+         tahun: $('select[name=tahun]').val()
+
+       }
+       // console.log(data);
+       
+            
+                url = "<?php echo base_url();?>insiden/getfilter";
+            // do_upload
+            $.ajax({
+                url:url,
+                data:data,
+                dataType:"TEXT",
+                type:"POST",
+                success:function(Data){
+
+                    
+                    tampilData()
+                },
+            function(isConfirm){
+                  
+            
+
+                }
+            });
+        
+        });
+
+        function tampilData(){
+
+
+    dataTablePencapaian = $('#laporan').DataTable({
+                "destroy": true,
+                "ajax": {
+                  "url": base_url+"index.php/insiden/ajaxlaporan/",
+                  "dataSrc": "data"
+              },
+                "emptyTable": "Tidak Ada Data Pesan",
+                "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+                "paging":   true,
+                "ordering": true,
+                "info":     true
+    });
+   }
+
+
     $(document).ready(function() {
         $('.data').DataTable();
     });
