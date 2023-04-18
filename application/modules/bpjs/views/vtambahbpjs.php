@@ -22,10 +22,12 @@ if (!empty($bpjs)) {
     $icdx2 =  '';
     $icdx3 =  '';
     $icdx4 =  '';
+    $icdx5 = '';
     $icdix =  '';
     $icdix2 =  '';
     $icdix3 =  '';
     $icdix4 =  '';
+    $icdix5 = '';
     $catatan =  '';
     
     $titel   = 'SIMPAN PASIEN';
@@ -193,7 +195,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="grouping"  onchange="price()" class="number-separator1"  name="grouping" value="<?php echo $grouping; ?>" required> 
+                    <input type="text"  id="grouping"  onchange="price()" class="number-separator1"  name="grouping" value="<?php echo $grouping; ?>" required  placeholder=0> 
                 </td>
             </tr>
             <tr> 
@@ -202,7 +204,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text"  id="iur"  onchange="price()" class="number-separator2"  name="iur" value="<?php echo $iur; ?>" required> 
+                    <input type="text"  id="iur"  onchange="price()" class="number-separator2"  name="iur" value="<?php echo $iur; ?>" required placeholder=0> 
                 </td>
             </tr>
             <tr> 
@@ -227,7 +229,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd10" name="icdx" value="<?php echo $icdx; ?>" placeholder="ICD10" >  
+                    <input type="text" style="width:300px" class="icd10" name="icdx" value="<?php echo $icdx; ?>" placeholder="ICD10" >  
                   
                 </td>
             </tr>
@@ -237,7 +239,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd10" name="icdx2" value="<?php echo $icdx2; ?>" placeholder="ICD10" >
+                    <input type="text" style="width:300px" class="icd10" name="icdx2" value="<?php echo $icdx2; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -246,7 +248,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd10" name="icdx3" value="<?php echo $icdx3; ?>" placeholder="ICD10" >
+                    <input type="text" style="width:300px" class="icd10" name="icdx3" value="<?php echo $icdx3; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -255,7 +257,16 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                <input type="text" class="icd10" name="icdx4" value="<?php echo $icdx4; ?>" placeholder="ICD10" >
+                <input type="text" style="width:300px" class="icd10" name="icdx4" value="<?php echo $icdx4; ?>" placeholder="ICD10" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD X Sekunder 4</b></label>
+                </td>
+                <td></td>
+                <td>
+                <input type="text"  style="width:300px" class="icd10" name="icdx5" value="<?php echo $icdx5; ?>" placeholder="ICD10" >
                 </td>
             </tr>
             <tr> 
@@ -264,7 +275,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd9" name="icdix" value="<?php echo $icdix; ?>" placeholder="ICD9" >
+                    <input type="text" style="width:300px" class="icd9" name="icdix" value="<?php echo $icdix; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -273,7 +284,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd9" name="icdix2" value="<?php echo $icdix2; ?>" placeholder="ICD9" >
+                    <input type="text" style="width:300px" class="icd9" name="icdix2" value="<?php echo $icdix2; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -282,7 +293,7 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd9" name="icdix3" value="<?php echo $icdix3; ?>" placeholder="ICD9" >
+                    <input type="text"style="width:300px" class="icd9" name="icdix3" value="<?php echo $icdix3; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr> 
@@ -291,7 +302,16 @@ if (!empty($bpjs)) {
                 </td>
                 <td></td>
                 <td>
-                    <input type="text" class="icd9" name="icdix4" value="<?php echo $icdix4; ?>" placeholder="ICD9" >
+                    <input type="text" style="width:300px" class="icd9" name="icdix4" value="<?php echo $icdix4; ?>" placeholder="ICD9" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Sekunder 4</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" style="width:300px" class="icd9" name="icdix5" value="<?php echo $icdix5; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr>

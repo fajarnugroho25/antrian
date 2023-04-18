@@ -9,8 +9,8 @@ class mbpjs extends CI_Model{
     function tampilkan(){
         
         $otherdb = $this->load->database('otherdb', TRUE);
-        $query = "SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, SUM(ROUND(real_amount)) AS tagihan, 
-                    max(room_prefix) as bangsal,  max(class_name) as kelas
+        $query = "SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, SUM(ROUND(real_amount)) + max(Adminitrasi) AS tagihan, 
+                    max(room_prefix) as bangsal,  max(class_name) as kelas, MAX(ifirm_name) as penjamin
                     FROM
                     (
                     
@@ -18,11 +18,17 @@ class mbpjs extends CI_Model{
                     R.no_reg, R.regpid, R.pid, R.current_dept_nr, (CASE WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),3,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),1) 
                     WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                     P.name_real, P.date_birth, (P.addr_str1 || P.kelurahan || P.kecamatan ||  P.kabupaten || P.addr_province) as alamat,
-                    D.name_real AS dpjp,  to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                    H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta
+                    D.name_real AS dpjp,  to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount, 
+                    H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta,
+                    (CASE WHEN C.class_name IN ('KELAS VVIP','KELAS VVIP MATERNAL','KELAS VIP A','KELAS VIP WISNU O.P.Q','KELAS VIP B-ISMAYA. BISMA A','ICU VIP') THEN 500000 
+					WHEN   C.class_name IN ('KELAS I SINGLE.','KELAS I SHINTA','KELAS I SINGLE','KELAS I') THEN 350000
+					WHEN   C.class_name IN ('KAMAR BAYI SEHAT','ODC') THEN 0
+				    WHEN   C.class_name IN ('KELAS III SRIKANDI','KELAS III') THEN 85000
+                    ELSE 150000 END) AS Adminitrasi, E.ifirm_name
                     
                     FROM bill_patient_row T 
                     LEFT JOIN regpatient R ON R.regpid = T.regpid
+                    LEFT JOIN insurance_firm E ON E.ifirm_id = R.ifirm_id
                     LEFT JOIN person P ON P.pid = R.pid
                     LEFT JOIN person D ON D.pid = R.doctor_id
                     LEFT JOIN hotel_bed K ON  K.hbid = R.current_bed_nr
@@ -43,7 +49,7 @@ class mbpjs extends CI_Model{
         
         $otherdb = $this->load->database('otherdb', TRUE);
         $query = "SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(date_birth) as tgl_lahir, max(alamat) as alamat, 
-                max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, max(no_sep) as SEP, SUM(ROUND(real_amount)) AS tagihan, 
+                max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, max(no_sep) as SEP, SUM(ROUND(real_amount))  + max(Adminitrasi) AS tagihan, 
                 max(room_prefix) as bangsal,  max(class_name) as kelas, 
                 max(hak_kelas_peserta) as hak_kelas
                 FROM
@@ -54,7 +60,12 @@ class mbpjs extends CI_Model{
                 WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                 P.name_real, P.date_birth, (P.addr_str1 ||' '|| P.kelurahan ||' '|| P.kecamatan ||' '||   P.kabupaten ||' '|| P.addr_province) as alamat,
                 D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta
+                H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta, 
+                (CASE WHEN C.class_name IN ('KELAS VVIP','KELAS VVIP MATERNAL','KELAS VIP A','KELAS VIP WISNU O.P.Q','KELAS VIP B-ISMAYA. BISMA A','ICU VIP') THEN 500000 
+				WHEN   C.class_name IN ('KELAS I SINGLE.','KELAS I SHINTA','KELAS I SINGLE','KELAS I') THEN 350000
+				WHEN   C.class_name IN ('KAMAR BAYI SEHAT','ODC') THEN 0
+				WHEN   C.class_name IN ('KELAS III SRIKANDI','KELAS III') THEN 85000
+                ELSE 150000 END) AS Adminitrasi
                 
                 FROM bill_patient_row T 
                 LEFT JOIN regpatient R ON R.regpid = T.regpid
@@ -75,7 +86,7 @@ class mbpjs extends CI_Model{
       }
 
 
-      function simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan){   
+      function simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdx5, $icdix, $icdix2, $icdix3, $icdix4, $icdix5, $catatan){   
         $data = array(
          'no_reg'=>$no_reg1,
             'rm'=>$rm,
@@ -97,10 +108,12 @@ class mbpjs extends CI_Model{
                 'icdx_2'=>$icdx2,
                 'icdx_3'=>$icdx3,
                 'icdx_4'=>$icdx4,
+                'icdx_5'=>$icdx5,
                 'icdix'=>$icdix,
                 'icdix_2'=>$icdix2,
                 'icdix_3'=>$icdix3,
                 'icdix_4'=>$icdix4,
+                'icdix_5'=>$icdix5,
                 'catatan'=>$catatan,
         
         );    
@@ -156,7 +169,7 @@ class mbpjs extends CI_Model{
             {
                 $otherdb = $this->load->database('otherdb', TRUE);
                 $query = " SELECT no_reg, max(pid) as RM, max(name_real) as nama_pasien, max(date_birth) as tgl_lahir, max(alamat) as alamat, 
-                            max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, max(no_sep) as SEP, SUM(ROUND(real_amount)) AS tagihan, 
+                            max(dpjp) as DPJP, MAX(reg_date) AS tgl_reg,  max(waktu) as masa_inap, max(no_sep) as SEP, SUM(ROUND(real_amount)) + max(Adminitrasi) AS tagihan, 
                             max(room_prefix) as bangsal,  max(class_name) as kelas, max(hak_kelas_peserta) as hak_kelas, max(statuss) as status
                             FROM
                             (
@@ -166,7 +179,13 @@ class mbpjs extends CI_Model{
                             WHEN SUBSTR(CAST( AGE(R.reg_date) AS TEXT ),4,1) =  'd' THEN LEFT(CAST(AGE(R.reg_date)AS TEXT ),2) ELSE '1' END) AS waktu,
                             P.name_real, P.date_birth, (P.addr_str1 ||' '|| P.kelurahan ||' '|| P.kecamatan ||' '||   P.kabupaten ||' '|| P.addr_province) as alamat,
                             D.name_real AS dpjp, to_char(R.reg_date, 'yyyy-mm-dd HH:mm:ss') AS reg_date, COALESCE (NULLIF(R.no_sep, ''),'') AS no_sep, T.description, (CASE WHEN (T.real_amount)  = 0 THEN (T.cost_dr + T.sales_rs) ELSE T.real_amount END) AS real_amount , 
-                            H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta, ( CASE WHEN R.is_discharged = 'false' THEN '1' ELSE '2' END ) as statuss
+                            H.room_prefix, C.class_name, COALESCE (NULLIF(B.hak_kelas_peserta, ''),'') AS hak_kelas_peserta,
+                            (CASE WHEN C.class_name IN ('KELAS VVIP','KELAS VVIP MATERNAL','KELAS VIP A','KELAS VIP WISNU O.P.Q','KELAS VIP B-ISMAYA. BISMA A','ICU VIP') THEN 500000 
+                            WHEN   C.class_name IN ('KELAS I SINGLE.','KELAS I SHINTA','KELAS I SINGLE','KELAS I') THEN 350000
+                            WHEN   C.class_name IN ('KAMAR BAYI SEHAT','ODC') THEN 0
+                            WHEN   C.class_name IN ('KELAS III SRIKANDI','KELAS III') THEN 85000
+                            ELSE 150000 END) AS Adminitrasi,
+                            ( CASE WHEN R.is_discharged = 'false' THEN '1' ELSE '2' END ) as statuss
                             
                             
                             FROM bill_patient_row T 
@@ -198,7 +217,7 @@ class mbpjs extends CI_Model{
                             A.alamat = B.alamat, A.dpjp = B.dpjp, A.tgl_reg = B.tgl_reg,
                             A.masa_inap = B.masa_inap, A.sep = B.sep, A.tagihan = B.tagihan,
                             A.bangsal = B.bangsal, A.kelas = B.kelas, A.hak_kelas = B.hak_kelas,
-                            A.status = B.status
+                            A.selisih_tagihan =(A.grouping + A.iur) - B.tagihan, A.status = B.status
                             WHERE A.no_reg = B.no_reg ";
                     $qsyc = $this->db->query($qwr);
                         // if ($qsyc->num_rows() > 0) {

@@ -72,11 +72,13 @@ class bpjs extends CI_Controller
             $icdx2 =  $this->input->post('icdx2'); 
             $icdx3 =  $this->input->post('icdx3'); 
             $icdx4 =  $this->input->post('icdx4'); 
+            $icdx5 =  $this->input->post('icdx5'); 
             $icdix =  $this->input->post('icdix');    
             $icdix2 =  $this->input->post('icdix2'); 
             $icdix3 =  $this->input->post('icdix3'); 
             $icdix4 =  $this->input->post('icdix4'); 
-            $catatan =  $this->input->post('catatan');          
+            $icdix5 =  $this->input->post('icdix5');
+            $catatan =  $this->input->post('catatan');         
     
             $this->db->where('no_reg', $no_reg1);
             $query = $this->db->get('bpjs');
@@ -87,7 +89,7 @@ class bpjs extends CI_Controller
             }
             else {
                     // Simpan Data
-                   $result = $this->mbpjs->simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdix, $icdix2, $icdix3, $icdix4, $catatan);
+                   $result = $this->mbpjs->simpan($no_reg1, $rm, $nama_pasien, $tgl_lahir, $alamat, $dpjp, $tgl_reg, $masa_inap, $sep, $bangsal, $kelas, $hak_kelas, $tagihan, $grouping, $iur, $selisih_tagihan, $icdx, $icdx2, $icdx3, $icdx4, $icdx5, $icdix, $icdix2, $icdix3, $icdix4, $icdix5, $catatan);
                    if ($result){
                    echo "<script>alert('Data Pasien BPJS Berhasil disimpan !'); history.go(-2)</script>";    
                    } else {
