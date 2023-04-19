@@ -14,6 +14,7 @@ if (!empty($bpjs)) {
     $bangsal = $row->bangsal; 
     $kelas = $row->kelas; 
     $hak_kelas = $row->hak_kelas; 
+    $penjamin = $row->penjamin; 
     $tagihan = $row->tagihan;  
     $grouping = '';
     $iur = '';
@@ -23,11 +24,13 @@ if (!empty($bpjs)) {
     $icdx3 =  '';
     $icdx4 =  '';
     $icdx5 = '';
+    $icdx6 = '';
     $icdix =  '';
     $icdix2 =  '';
     $icdix3 =  '';
     $icdix4 =  '';
     $icdix5 = '';
+    $icdix6 = '';
     $catatan =  '';
     
     $titel   = 'SIMPAN PASIEN';
@@ -182,6 +185,15 @@ if (!empty($bpjs)) {
             </tr>
             <tr> 
                 <td>
+                    <label><b>Penjamin</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" id="penjamin" name="penjamin" value="<?php echo $penjamin; ?>" readonly>
+                </td>
+            </tr>
+            <tr> 
+                <td>
                     <label><b>Tagihan</b></label>
                 </td>
                 <td></td>
@@ -271,6 +283,15 @@ if (!empty($bpjs)) {
             </tr>
             <tr> 
                 <td>
+                    <label><b>ICD X Sekunder 5</b></label>
+                </td>
+                <td></td>
+                <td>
+                <input type="text"  style="width:300px" class="icd10" name="icdx6" value="<?php echo $icdx6; ?>" placeholder="ICD10" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
                     <label><b>ICD IX Utama</b></label>
                 </td>
                 <td></td>
@@ -312,6 +333,15 @@ if (!empty($bpjs)) {
                 <td></td>
                 <td>
                     <input type="text" style="width:300px" class="icd9" name="icdix5" value="<?php echo $icdix5; ?>" placeholder="ICD9" >
+                </td>
+            </tr>
+            <tr> 
+                <td>
+                    <label><b>ICD IX Sekunder 5</b></label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" style="width:300px" class="icd9" name="icdix6" value="<?php echo $icdix6; ?>" placeholder="ICD9" >
                 </td>
             </tr>
             <tr>

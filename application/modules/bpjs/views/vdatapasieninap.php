@@ -28,7 +28,13 @@
               <?php foreach ($bpjs as $d){ ?> 
         <tr>        
           <td><?php echo $d->rm; ?></td>
-          <td><?php echo $d->nama_pasien; ?></td>
+          <?php
+          if ($d->status < 2) {
+                    echo  ' <td style=" text-align: left; ">' . $d->nama_pasien . '</td>';   
+          } else { 
+                    echo ' <td style=" text-align: left; background-color:#1E90FF; color:white; border-radius: 4px; ">' . $d->nama_pasien . '</td>';              
+          }
+          ?>
           <td><?php echo $d->masa_inap; ?></td>
           <td><?php echo $d->dpjp; ?></td>
           <td><?php echo $d->tgl_reg; ?></td>
