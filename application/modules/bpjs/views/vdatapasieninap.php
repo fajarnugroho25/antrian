@@ -1,9 +1,15 @@
-<script type="text/javascript" src="<?php echo base_url();?>public/assets/DataTables/media/js/jquery.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>public/assets/DataTables/media/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/DataTables/media/css/dataTables.bootstrap.css">
-<script src="~/Scripts/autoNumeric/autoNumeric.min.js" type="text/javascript"></script>        
-<!--  -->
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/buttons.flash.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/jszip.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/pdfmake.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/vfs_fonts.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/buttons.html5.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/assets/fr/buttons.print.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/fr/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/assets/fr/buttons.dataTables.min.css">
+<script>var base_url = '<?php echo base_url() ?>'</script> 
 
 <div class="span10">  
             <h3 class="page-titlee5r">LIST PASIEN BPJS R. INAP DI HISYS</h3>
@@ -56,12 +62,15 @@
 
 
 </div>
- <script type="text/javascript">
-  $(document).ready(function(){
-    $('.data').DataTable();
-  });
-</script>
-    
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.data').DataTable({
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']});
+    });
+  </script>
+
 </div>
+
 
 
