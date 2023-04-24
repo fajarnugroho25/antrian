@@ -126,12 +126,17 @@ class mbpjs extends CI_Model{
         return $query;
         }
 
-        function tampilkandatabpjs(){
-            $query = $this->db->get('bpjs');
-            return $query->result();    
+        function tampilkandatabpjs(){ 
+            $this->db->select('*');
+            $this->db->from('bpjs');
+            $this->db->where('tgl_pulang IS NULL');
+            $this->db->or_where('DATEDIFF(now(),tgl_pulang) < 3');
+            $query = $this->db->get();
+            return $query->result();
             
         }
-    
+
+   
         function get_by_reg($no_reg){
             $this->db->where('no_reg', $no_reg);
             $query = $this->db->get('bpjs');
@@ -263,3 +268,45 @@ class mbpjs extends CI_Model{
     }
 
  }
+
+
+ 
+//          function tamp_BarangMutasi($unit_id)
+//     {
+//         $status = $this->session->userdata('status_perizinan');
+//         $this->db->select('datamutasi.*,nama_gudang,unit_nama');
+//         $this->db->from('datamutasi');
+//         $this->db->join('gudang', 'gudang.gudang_id = datamutasi.id_gudang', 'left');
+//         $this->db->join('unit', 'unit.unit_id = datamutasi.bagian', 'left');
+
+//         if ($status != '1') {
+//         $this->db->where("bagian in ($unit_id)");
+//         // $this->db->where('bagian',$unit_id);
+//         }
+        
+
+//         $query = $this->db->get();
+//         return $query->result();
+//     }
+
+// function login($username, $password){
+//     $this->db->select('admin.user,dokter.nama_dokter as nama_dokter,pass,akses,unit_id,unituser,nama, admin.id,dokter.id as id_dokter,akses_item, admin_status,status,unit_id,ttd,status_perizinan,gudang_id,nik,personauto,kprs, admin_ruang, tglawalcb, maccess');
+//     $this->db->from('admin');
+//     $this->db->join('dokter', 'dokter.user = admin.user', 'left');  
+//     $this->db->where('admin.user', $username);
+//     $this->db->('pass', $password); 
+//     $this->db->where('status', '1'); 
+//     $this->db->limit(1);     
+//         $query = $this->db->get(); 
+//        return ($query->num_rows() > 0) ? $query->row() : FALSE;
+
+
+// function get_pasien($id_pasien)
+// {
+//     $this->db->select('*');
+//     $this->db->from('pasienbankdarah as pbd');
+//     $this->db->join('dokter as d', 'd.id = pbd.dokter', 'left');
+//     $this->db->where('id_pasien', $id_pasien);
+//     $query = $this->db->get();
+//     return $query->result();
+// }
